@@ -1,1187 +1,695 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M.L. Goodlow — Author of Between the Blue Lines</title>
-<meta name="description" content="The official home of M.L. Goodlow, author of Between the Blue Lines — an M/M hockey romance about trust, found family, and second chances. Sweat, Sacrifice, and Second Chances.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M.L. Goodlow — Author of Between the Blue Lines</title>
+  <meta name="description"
+    content="The official home of M.L. Goodlow, author of Between the Blue Lines — an M/M hockey romance about trust, found family, and second chances. Sweat, Sacrifice, and Second Chances.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<style>
-:root{
-  --ink:#050b14; --smoke:#0a1420; --smoke-2:#0f1d2e;
-  --wine:#123252; --crimson:#3f8fd6; --crimson-bright:#63b3ef;
-  --gold:#a9c4de; --gold-bright:#c7dbee;
-  --cream:#f3f6fa; --cream-soft:#dbe4ee; --rose:#8fb4d9;
-  --muted:rgba(243,246,250,0.55); --muted-2:rgba(243,246,250,0.35);
-  --border:rgba(243,246,250,0.1); --border-strong:rgba(243,246,250,0.2);
-  --serif:'Fraunces', serif; --sans:'Outfit', sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{background:var(--ink);color:var(--cream);font-family:var(--sans);overflow-x:hidden;}
-html.lenis{height:auto;}
-.lenis.lenis-smooth{scroll-behavior:auto;}
-.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain;}
-.lenis.lenis-stopped{overflow:hidden;}
-body{font-weight:300;line-height:1.6;letter-spacing:0.01em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
-::selection{background:var(--crimson);color:var(--cream);}
-img{max-width:100%;display:block;}
-a{color:inherit;text-decoration:none;}
-button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
-::-webkit-scrollbar{width:6px;}
-::-webkit-scrollbar-track{background:var(--ink);}
-::-webkit-scrollbar-thumb{background:var(--wine);}
-::-webkit-scrollbar-thumb:hover{background:var(--crimson);}
-
-#bg-canvas{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;pointer-events:none;}
-.bg-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 80% 20%, rgba(63,143,214,0.08), transparent 50%),radial-gradient(ellipse at 20% 80%, rgba(18,50,82,0.12), transparent 50%);}
-
-/* Custom Cursor */
-.cursor-dot{position:fixed;width:8px;height:8px;background:var(--crimson);border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:difference;transform:translate(-50%,-50%);transition:transform 0.2s ease;}
-.cursor-outline{position:fixed;width:40px;height:40px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.4s ease, width 0.3s ease, height 0.3s ease;}
-.cursor-outline.hover{width:60px;height:60px;background:rgba(169,196,222,0.1);}
-
-/* Navigation */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);}
-.nav.scrolled{background:rgba(10,7,7,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:1rem 3rem;border-bottom:1px solid var(--border);}
-.nav-logo{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;display:flex;align-items:center;gap:0.6rem;cursor:pointer;z-index:1001;}
-.nav-logo .dot{width:8px;height:8px;border-radius:50%;background:var(--crimson);box-shadow:0 0 12px var(--crimson);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:0.7;}}
-.nav-menu{display:flex;gap:2.5rem;align-items:center;font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:400;}
-.nav-link{position:relative;padding:0.5rem 0;color:var(--muted);transition:color 0.3s ease;cursor:pointer;}
-.nav-link::before{content:attr(data-num);position:absolute;top:-0.6rem;left:0;font-size:0.55rem;color:var(--crimson);opacity:0;transition:opacity 0.3s ease;}
-.nav-link:hover,.nav-link.active{color:var(--cream);}
-.nav-link:hover::before,.nav-link.active::before{opacity:1;}
-.nav-link.active{color:var(--crimson-bright);}
-.nav-cta{padding:0.7rem 1.4rem;border:1px solid var(--border-strong);border-radius:100px;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:all 0.3s ease;cursor:pointer;background:transparent;color:var(--cream);}
-.nav-cta:hover{background:var(--crimson);border-color:var(--crimson);transform:translateY(-2px);}
-.menu-toggle{display:none;}
-
-/* Page System */
-.page{display:none;min-height:100vh;position:relative;z-index:2;}
-.page.active{display:block;}
-.page-transition{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--crimson);z-index:9999;transform:translateY(100%);pointer-events:none;}
-
-/* Hero */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 4rem;overflow:hidden;}
-.hero-content{position:relative;z-index:3;width:100%;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:4rem;align-items:center;}
-.hero-text{position:relative;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:0.8rem;font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;font-weight:400;}
-.hero-eyebrow .line{width:40px;height:1px;background:var(--gold);}
-.hero-title{font-family:var(--serif);font-size:clamp(3rem, 8vw, 7.5rem);font-weight:300;line-height:0.95;letter-spacing:-0.04em;margin-bottom:1.5rem;font-variation-settings:"opsz" 144;}
-.hero-title .ln{display:block;overflow:hidden;}
-.hero-title .ln span{display:inline-block;}
-.hero-title .accent{font-style:italic;font-weight:400;color:var(--crimson-bright);}
-.hero-tagline{font-size:0.85rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--cream-soft);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem;font-weight:300;flex-wrap:wrap;}
-.hero-tagline .sep{width:4px;height:4px;border-radius:50%;background:var(--gold);}
-.hero-quote{font-family:var(--serif);font-style:italic;font-size:1.15rem;line-height:1.5;color:var(--cream-soft);max-width:480px;margin-bottom:3rem;font-weight:300;position:relative;padding-left:1.5rem;}
-.hero-quote::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg, var(--crimson), transparent);}
-.hero-cta-group{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn{display:inline-flex;align-items:center;gap:0.7rem;padding:1rem 1.8rem;font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;border-radius:100px;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);cursor:pointer;position:relative;overflow:hidden;}
-.btn-primary{background:var(--crimson);color:var(--cream);border:1px solid var(--crimson);}
-.btn-primary:hover{background:var(--crimson-bright);border-color:var(--crimson-bright);transform:translateY(-3px);box-shadow:0 12px 30px rgba(63,143,214,0.35);}
-.btn-ghost{background:transparent;color:var(--cream);border:1px solid var(--border-strong);}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px);}
-.btn .arrow{transition:transform 0.3s ease;}
-.btn:hover .arrow{transform:translateX(4px);}
-
-.hero-visual{position:relative;height:600px;display:flex;align-items:center;justify-content:center;}
-.hero-image-card{position:absolute;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.5);transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);}
-.hero-image-card img{width:100%;height:100%;object-fit:cover;}
-.hero-image-main{width:320px;height:440px;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-3deg);border:1px solid var(--border-strong);z-index:2;}
-.hero-image-main:hover{transform:translate(-50%,-50%) rotate(0deg) scale(1.02);}
-.hero-image-side{width:200px;height:260px;bottom:-20px;right:-30px;z-index:3;border:2px solid var(--gold);transform:rotate(5deg);}
-.hero-image-side:hover{transform:rotate(0deg) scale(1.05);}
-.hero-badge{position:absolute;top:-30px;left:-20px;width:120px;height:120px;border-radius:50%;background:var(--crimson);display:flex;align-items:center;justify-content:center;z-index:4;font-family:var(--serif);font-style:italic;font-size:0.85rem;text-align:center;line-height:1.2;color:var(--cream);animation:rotate 20s linear infinite;box-shadow:0 10px 40px rgba(63,143,214,0.4);}
-.hero-badge svg{position:absolute;width:100%;height:100%;animation:rotate 20s linear infinite reverse;}
-@keyframes rotate{to{transform:rotate(360deg);}}
-.scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:0.8rem;color:var(--muted);font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;}
-.scroll-line{width:1px;height:40px;background:linear-gradient(180deg, var(--gold), transparent);position:relative;overflow:hidden;}
-.scroll-line::after{content:"";position:absolute;top:0;left:0;width:100%;height:50%;background:var(--cream);animation:scroll-down 2s infinite;}
-@keyframes scroll-down{0%{transform:translateY(-100%);}100%{transform:translateY(200%);}}
-.hero-marquee{position:absolute;bottom:0;left:0;right:0;z-index:5;padding:1.5rem 0;border-top:1px solid var(--border);background:rgba(10,7,7,0.4);backdrop-filter:blur(10px);overflow:hidden;}
-.marquee-track{display:flex;gap:3rem;animation:marquee 30s linear infinite;white-space:nowrap;font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--cream-soft);}
-.marquee-track span{display:inline-flex;align-items:center;gap:3rem;}
-.marquee-track .star{color:var(--crimson);font-style:normal;}
-@keyframes marquee{to{transform:translateX(-50%);}}
-
-/* Section Common */
-.section{padding:8rem 3rem;position:relative;z-index:2;}
-.section-inner{max-width:1400px;margin:0 auto;}
-.section-header{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:end;margin-bottom:5rem;padding-bottom:2rem;border-bottom:1px solid var(--border);}
-.section-num{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--crimson);letter-spacing:0.1em;}
-.section-title{font-family:var(--serif);font-size:clamp(2rem, 5vw, 4rem);font-weight:300;line-height:1;letter-spacing:-0.03em;}
-.section-title .italic{font-style:italic;color:var(--gold);}
-
-/* Reveal Animation */
-.reveal-text{overflow:hidden;display:block;}
-.reveal-text span{display:inline-block;transform:translateY(100%);}
-
-/* About Page */
-.about-intro{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center;margin-bottom:8rem;}
-.about-image-stack{position:relative;height:600px;}
-.about-image-stack img{position:absolute;border-radius:6px;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,0.4);}
-.about-img-1{width:70%;height:80%;top:0;left:0;z-index:2;}
-.about-img-2{width:45%;height:50%;bottom:0;right:0;z-index:3;border:3px solid var(--gold);}
-.about-img-decor{position:absolute;top:10%;right:5%;width:80px;height:80px;border:1px solid var(--crimson);z-index:1;transform:rotate(45deg);}
-.about-text h3{font-family:var(--serif);font-size:2.5rem;font-weight:300;line-height:1.1;margin-bottom:2rem;letter-spacing:-0.02em;}
-.about-text h3 em{color:var(--crimson-bright);}
-.about-text p{color:var(--cream-soft);margin-bottom:1.5rem;font-size:1.05rem;line-height:1.75;}
-.about-text p.lead{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:var(--cream);line-height:1.4;margin-bottom:2.5rem;font-weight:300;}
-.duality{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:6rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-.duality-card{padding:4rem 3rem;position:relative;overflow:hidden;transition:background 0.5s ease;}
-.duality-card:first-child{border-right:1px solid var(--border);}
-.duality-card:hover{background:rgba(63,143,214,0.05);}
-.duality-card .num{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--crimson);margin-bottom:1rem;}
-.duality-card h4{font-family:var(--serif);font-size:2.2rem;font-weight:300;margin-bottom:1rem;letter-spacing:-0.02em;}
-.duality-card h4 em{color:var(--gold);}
-.duality-card p{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:380px;}
-.duality-card .icon{font-size:2rem;color:var(--crimson);margin-bottom:1.5rem;}
-.about-quote{text-align:center;padding:6rem 0;position:relative;}
-.about-quote::before{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle, rgba(63,143,214,0.1), transparent 70%);z-index:-1;}
-.about-quote blockquote{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-style:italic;font-weight:300;line-height:1.2;max-width:900px;margin:0 auto 2rem;letter-spacing:-0.02em;}
-.about-quote blockquote .highlight{color:var(--crimson-bright);position:relative;}
-.about-quote .attribution{font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);}
-.about-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:4rem;}
-.about-gallery .gallery-item{aspect-ratio:3/4;overflow:hidden;border-radius:4px;position:relative;cursor:pointer;}
-.about-gallery .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);}
-.about-gallery .gallery-item:hover img{transform:scale(1.08);}
-
-/* Books Page & Book Showcase */
-.book-3d-container{width:100%;max-width:420px;margin:0 auto;position:relative;perspective:1200px;}
-.book-showcase-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:110%;height:110%;background:radial-gradient(ellipse at center, rgba(63,143,214,0.35), transparent 70%);filter:blur(30px);z-index:0;animation:glow-pulse 4s ease-in-out infinite;}
-@keyframes glow-pulse{0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.06);}}
-.book-cover-showcase{position:relative;z-index:1;aspect-ratio:2/3;border-radius:6px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,0.6),0 0 0 1px var(--border-strong);cursor:grab;animation:book-float 5s ease-in-out infinite;transform-style:preserve-3d;will-change:transform;}
-.book-cover-showcase:active{cursor:grabbing;}
-.book-cover-showcase img{width:100%;height:100%;object-fit:cover;}
-@keyframes book-float{0%,100%{transform:translateY(0) rotate(-1.5deg);}50%{transform:translateY(-16px) rotate(1.5deg);}}
-.book-cover-ribbon{position:absolute;top:1.5rem;left:-2.5rem;z-index:3;background:var(--crimson);color:var(--cream);padding:0.5rem 3rem;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;transform:rotate(-45deg);box-shadow:0 6px 16px rgba(0,0,0,0.4);}
-.books-genres{display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:4rem;}
-.genre-chip{padding:0.6rem 1.2rem;border:1px solid var(--border-strong);border-radius:100px;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all 0.3s ease;background:transparent;}
-.genre-chip:hover{color:var(--cream);border-color:var(--cream-soft);}
-.genre-chip.active{background:var(--crimson);border-color:var(--crimson);color:var(--cream);}
-.featured-book{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:center;margin-bottom:8rem;padding-bottom:6rem;border-bottom:1px solid var(--border);}
-.featured-book-info .label{font-size:0.72rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--crimson);margin-bottom:1.5rem;}
-.featured-book-info h3{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1;letter-spacing:-0.03em;margin-bottom:0.5rem;}
-.featured-book-info h3 em{font-style:italic;color:var(--gold);}
-.featured-book-info .author{font-family:var(--serif);font-style:italic;color:var(--muted);margin-bottom:2rem;font-size:1.1rem;}
-.featured-book-info .blurb{color:var(--cream-soft);font-size:1.05rem;line-height:1.75;margin-bottom:2rem;max-width:520px;}
-.featured-book-info .meta{display:flex;gap:2rem;margin-bottom:2.5rem;padding:1.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);flex-wrap:wrap;}
-.featured-book-info .meta-item .lbl{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;}
-.featured-book-info .meta-item .val{font-family:var(--serif);font-size:1.1rem;color:var(--cream);}
-.featured-book-info .actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
-.books-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;}
-.book-card{cursor:pointer;transition:all 0.5s cubic-bezier(0.16,1,0.3,1);}
-.book-card.filtered-out{display:none;}
-.book-card-cover{aspect-ratio:2/3;border-radius:4px;overflow:hidden;margin-bottom:1.5rem;position:relative;box-shadow:0 20px 50px rgba(0,0,0,0.4);}
-.book-card-cover img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s cubic-bezier(0.16,1,0.3,1);}
-.book-card:hover .book-card-cover img{transform:scale(1.06);}
-.book-card .genre-tag{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--crimson);margin-bottom:0.5rem;}
-.book-card h4{font-family:var(--serif);font-size:1.6rem;font-weight:400;line-height:1.1;margin-bottom:0.4rem;letter-spacing:-0.01em;}
-.book-card .blurb-short{color:var(--muted);font-size:0.9rem;line-height:1.5;margin-bottom:0.8rem;}
-.book-card .book-meta{display:flex;align-items:center;gap:1rem;font-size:0.78rem;color:var(--muted);}
-.book-card .book-meta .sep{width:3px;height:3px;border-radius:50%;background:var(--gold);}
-.soon-cover{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg, var(--smoke), var(--smoke-2));border:1px dashed var(--border-strong);font-size:2.5rem;color:var(--gold);}
-.soon-card:hover .soon-cover{border-color:var(--crimson);color:var(--crimson-bright);}
-.soon-card[data-page]{cursor:pointer;}
-
-/* Horizontal Scroll Section (Home) */
-.h-scroll-section{padding:8rem 0;overflow:hidden;position:relative;z-index:2;}
-.h-scroll-track{display:flex;gap:3rem;padding:0 3rem;will-change:transform;}
-.h-scroll-card{width:350px;flex-shrink:0;cursor:pointer;}
-.h-scroll-card .cover{aspect-ratio:2/3;border-radius:4px;overflow:hidden;margin-bottom:1.5rem;box-shadow:0 20px 50px rgba(0,0,0,0.4);}
-.h-scroll-card .cover img{width:100%;height:100%;object-fit:cover;}
-
-/* Blog Page */
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;}
-.blog-card{cursor:pointer;transition:transform 0.4s ease;}
-.blog-card:hover{transform:translateY(-6px);}
-.blog-card-image{aspect-ratio:5/4;border-radius:4px;overflow:hidden;margin-bottom:1.5rem;position:relative;}
-.blog-card-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s ease;}
-.blog-card:hover .blog-card-image img{transform:scale(1.06);}
-.blog-card .category{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--crimson);margin-bottom:0.7rem;}
-.blog-card h4{font-family:var(--serif);font-size:1.5rem;font-weight:400;line-height:1.15;margin-bottom:0.8rem;letter-spacing:-0.01em;transition:color 0.3s ease;}
-.blog-card:hover h4{color:var(--gold);}
-.blog-card .excerpt{color:var(--muted);font-size:0.92rem;line-height:1.6;margin-bottom:1rem;}
-.blog-card .blog-meta{font-size:0.75rem;margin-bottom:0;color:var(--muted);display:flex;gap:1rem;}
-
-/* Media Page */
-.media-header-quote{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-style:italic;font-weight:300;line-height:1.2;text-align:center;max-width:900px;margin:0 auto 5rem;letter-spacing:-0.02em;}
-.media-header-quote .highlight{color:var(--crimson-bright);}
-.press-kit{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:6rem;}
-.press-kit-text h3{font-family:var(--serif);font-size:2.5rem;font-weight:300;margin-bottom:1.5rem;letter-spacing:-0.02em;}
-.press-kit-text p{color:var(--cream-soft);margin-bottom:2rem;line-height:1.7;}
-.press-kit-list{list-style:none;margin-bottom:2rem;}
-.press-kit-list li{padding:0.8rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:0.95rem;}
-.press-kit-list li .lbl{display:flex;align-items:center;gap:0.8rem;color:var(--cream-soft);}
-.press-kit-list li .lbl i{color:var(--crimson);}
-.press-kit-list li .size{color:var(--muted);font-size:0.8rem;}
-.headshot-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
-.headshot-item{aspect-ratio:3/4;border-radius:4px;overflow:hidden;position:relative;cursor:pointer;}
-.headshot-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.8s ease;}
-.headshot-item:hover img{transform:scale(1.05);}
-
-/* Testimonials Page */
-.testimonials-featured{text-align:center;padding:5rem 0;position:relative;margin-bottom:5rem;}
-.testimonials-featured::before{content:"\201C";position:absolute;top:0;left:50%;transform:translateX(-50%);font-family:var(--serif);font-size:12rem;color:var(--crimson);opacity:0.15;line-height:1;}
-.testimonials-featured blockquote{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-style:italic;font-weight:300;line-height:1.3;max-width:900px;margin:0 auto 2.5rem;position:relative;z-index:2;letter-spacing:-0.01em;}
-.testimonials-featured .source{font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);}
-.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-bottom:5rem;}
-.testimonial-card{padding:2.5rem;border:1px solid var(--border);border-radius:6px;position:relative;transition:all 0.4s ease;background:rgba(245,237,224,0.02);}
-.testimonial-card:hover{border-color:var(--border-strong);background:rgba(245,237,224,0.04);transform:translateY(-4px);}
-.testimonial-card .stars{color:var(--crimson);letter-spacing:0.3em;margin-bottom:1.2rem;font-size:0.85rem;}
-.testimonial-card .quote{font-family:var(--serif);font-style:italic;font-size:1.1rem;line-height:1.55;color:var(--cream);margin-bottom:1.8rem;}
-.testimonial-card .reviewer{display:flex;align-items:center;gap:1rem;padding-top:1.5rem;border-top:1px solid var(--border);}
-.testimonial-card .reviewer .info .name{font-weight:500;color:var(--cream);font-size:0.95rem;}
-.testimonial-card .reviewer .info .role{color:var(--muted);font-size:0.78rem;letter-spacing:0.05em;}
-
-/* Store Page */
-.store-hero{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:6rem;}
-.store-hero-text h3{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1;letter-spacing:-0.03em;margin-bottom:1.5rem;}
-.store-hero-text h3 em{font-style:italic;color:var(--crimson-bright);}
-.store-hero-text p{color:var(--cream-soft);font-size:1.1rem;line-height:1.7;margin-bottom:2rem;}
-.store-featured-product{position:relative;aspect-ratio:1/1;border-radius:8px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.5);}
-.store-featured-product img{width:100%;height:100%;object-fit:cover;}
-.store-featured-product .price-tag{position:absolute;top:1.5rem;right:1.5rem;background:var(--crimson);color:var(--cream);padding:0.6rem 1.2rem;border-radius:100px;font-size:0.85rem;font-weight:500;letter-spacing:0.05em;}
-.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem;margin-bottom:5rem;}
-.product-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all 0.4s ease;cursor:pointer;background:rgba(245,237,224,0.02);}
-.product-card:hover{border-color:var(--crimson);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,0.3);}
-.product-image{aspect-ratio:1/1;overflow:hidden;position:relative;background:var(--smoke);}
-.product-image img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;}
-.product-card:hover .product-image img{transform:scale(1.05);}
-.product-image .badge{position:absolute;top:1rem;left:1rem;background:var(--gold);color:var(--ink);padding:0.3rem 0.8rem;border-radius:100px;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;}
-.product-info{padding:1.8rem;}
-.product-info .category{font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--crimson);margin-bottom:0.5rem;}
-.product-info h4{font-family:var(--serif);font-size:1.4rem;font-weight:400;margin-bottom:0.5rem;line-height:1.2;}
-.product-info .desc{color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:1rem;}
-.product-info .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);}
-.product-info .price{font-family:var(--serif);font-size:1.4rem;color:var(--cream);}
-.product-info .add-btn{background:transparent;border:1px solid var(--border-strong);width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;color:var(--cream);}
-.product-info .add-btn:hover{background:var(--crimson);border-color:var(--crimson);transform:rotate(90deg);}
-
-/* Contact Page */
-.contact-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;margin-bottom:5rem;}
-.contact-form{background:rgba(245,237,224,0.02);padding:3rem;border-radius:8px;border:1px solid var(--border);}
-.contact-form h3{font-family:var(--serif);font-size:2rem;font-weight:300;margin-bottom:0.5rem;letter-spacing:-0.02em;}
-.contact-form .sub{color:var(--muted);margin-bottom:2.5rem;font-size:0.95rem;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.2rem;}
-.form-field{position:relative;}
-.form-field.full{grid-column:1/-1;}
-.form-field label{display:block;font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;}
-.form-field input,.form-field textarea,.form-field select{width:100%;padding:0.9rem 1rem;background:rgba(10,7,7,0.5);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-family:var(--sans);font-size:0.95rem;transition:all 0.3s ease;}
-.form-field input:focus,.form-field textarea:focus,.form-field select:focus{outline:none;border-color:var(--crimson);background:rgba(10,7,7,0.8);}
-.form-field textarea{resize:vertical;min-height:120px;}
-.form-field .error-msg{color:var(--crimson-bright);font-size:0.75rem;margin-top:0.4rem;display:none;}
-.form-field.error .error-msg{display:block;}
-.form-field.error input,.form-field.error textarea{border-color:var(--crimson-bright);}
-.form-success{display:none;padding:1.5rem;background:rgba(63,143,214,0.1);border:1px solid var(--crimson);border-radius:4px;margin-bottom:1.5rem;color:var(--cream);font-size:0.95rem;}
-.form-success.show{display:flex;align-items:center;gap:0.8rem;}
-.form-success i{color:var(--crimson-bright);}
-.contact-sidebar .sidebar-block{margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
-.contact-sidebar .sidebar-block:last-child{border-bottom:none;}
-.contact-sidebar h4{font-family:var(--serif);font-size:0.85rem;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
-.contact-sidebar p{color:var(--cream-soft);line-height:1.7;margin-bottom:0.8rem;}
-.contact-sidebar .social-row{display:flex;gap:1rem;}
-.contact-sidebar .social-row a{width:42px;height:42px;border:1px solid var(--border-strong);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;color:var(--cream);}
-.contact-sidebar .social-row a:hover{background:var(--crimson);border-color:var(--crimson);transform:translateY(-3px);}
-.contact-portrait{width:100%;aspect-ratio:4/5;border-radius:6px;overflow:hidden;margin-top:2rem;}
-.contact-portrait img{width:100%;height:100%;object-fit:cover;}
-.newsletter-block{background:linear-gradient(135deg, rgba(63,143,214,0.15), rgba(18,50,82,0.1));padding:3rem;border-radius:8px;border:1px solid rgba(63,143,214,0.3);text-align:center;margin-top:3rem;}
-.newsletter-block h3{font-family:var(--serif);font-size:2rem;font-weight:300;margin-bottom:0.8rem;letter-spacing:-0.02em;}
-.newsletter-block h3 em{font-style:italic;color:var(--gold);}
-.newsletter-block p{color:var(--cream-soft);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;}
-.newsletter-form{display:flex;max-width:500px;margin:0 auto;gap:0.5rem;}
-.newsletter-form input{flex:1;padding:0.9rem 1.2rem;background:rgba(10,7,7,0.5);border:1px solid var(--border-strong);border-radius:100px;color:var(--cream);font-family:var(--sans);font-size:0.95rem;}
-.newsletter-form input:focus{outline:none;border-color:var(--crimson);}
-.newsletter-form button{padding:0.9rem 1.8rem;background:var(--crimson);color:var(--cream);border-radius:100px;font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:500;transition:all 0.3s ease;}
-.newsletter-form button:hover{background:var(--crimson-bright);transform:translateY(-2px);}
-.newsletter-success{display:none;margin-top:1rem;color:var(--gold);font-family:var(--serif);font-style:italic;}
-.newsletter-success.show{display:block;}
-
-/* Footer */
-.footer{padding:5rem 3rem 2rem;border-top:1px solid var(--border);background:var(--smoke);position:relative;z-index:2;}
-.footer-inner{max-width:1400px;margin:0 auto;}
-.footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:4rem;padding-bottom:3rem;border-bottom:1px solid var(--border);}
-.footer-brand h3{font-family:var(--serif);font-size:2rem;font-weight:300;margin-bottom:1rem;letter-spacing:-0.02em;}
-.footer-brand h3 em{font-style:italic;color:var(--crimson-bright);}
-.footer-brand p{color:var(--muted);line-height:1.6;max-width:300px;margin-bottom:1.5rem;}
-.footer-brand .quote-mini{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:0.95rem;padding-left:1rem;border-left:2px solid var(--crimson);}
-.footer-col h5{font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;font-weight:500;}
-.footer-col ul{list-style:none;}
-.footer-col ul li{margin-bottom:0.8rem;}
-.footer-col ul li a{color:var(--muted);font-size:0.92rem;transition:color 0.3s ease;cursor:pointer;}
-.footer-col ul li a:hover{color:var(--cream);}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;font-size:0.8rem;color:var(--muted);}
-.footer-bottom .credits{display:flex;align-items:center;gap:1rem;}
-.footer-bottom .heart{color:var(--crimson);}
-
-/* Toast */
-.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--smoke);border:1px solid var(--crimson);padding:1rem 1.5rem;border-radius:8px;display:flex;align-items:center;gap:0.8rem;z-index:10000;opacity:0;transition:all 0.4s cubic-bezier(0.16,1,0.3,1);box-shadow:0 20px 50px rgba(0,0,0,0.5);font-size:0.9rem;}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
-.toast i{color:var(--crimson-bright);}
-
-/* Manifesto Section */
-.manifesto-section{padding:10rem 3rem;text-align:center;position:relative;z-index:2;}
-.manifesto-section .manifesto-text{font-family:var(--serif);font-size:clamp(1.8rem,4vw,3.5rem);font-weight:300;line-height:1.25;max-width:1000px;margin:0 auto;letter-spacing:-0.02em;}
-.manifesto-section .manifesto-text em{font-style:italic;color:var(--crimson-bright);}
-.manifesto-section .manifesto-text .gold{color:var(--gold);font-style:italic;}
-.manifesto-divider{width:1px;height:80px;background:linear-gradient(180deg,transparent,var(--crimson),transparent);margin:3rem auto 0;}
-
-/* Stats Section */
-.stats-section{padding:6rem 3rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:2;}
-.stats-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
-.stat-item{position:relative;}
-.stat-item:not(:last-child)::after{content:"";position:absolute;right:0;top:20%;height:60%;width:1px;background:var(--border);}
-.stat-num{font-family:var(--serif);font-size:clamp(3rem,6vw,5rem);font-weight:300;color:var(--crimson-bright);line-height:1;letter-spacing:-0.03em;}
-.stat-num em{font-style:italic;color:var(--gold);}
-.stat-label{font-size:0.75rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-top:0.8rem;}
-
-/* Responsive */
-@media (max-width:1100px){
-  .nav{padding:1.2rem 2rem;}
-  .nav.scrolled{padding:0.8rem 2rem;}
-  .nav-menu{gap:1.8rem;}
-  .hero-content,.about-intro,.featured-book,.press-kit,.store-hero,.contact-layout{grid-template-columns:1fr;gap:3rem;}
-  .hero-visual{height:400px;}
-  .about-image-stack{height:500px;}
-  .duality,.testimonials-grid,.books-grid,.blog-grid,.products-grid{grid-template-columns:repeat(2,1fr);}
-  .headshot-gallery{grid-template-columns:repeat(2,1fr);}
-  .footer-top{grid-template-columns:1fr 1fr;}
-  .stats-grid{grid-template-columns:repeat(2,1fr);}
-  .stat-item::after{display:none;}
-  .book-3d-container{max-width:340px;}
-}
-@media (max-width:768px){
-  .nav{padding:1rem 1.5rem;}
-  .nav-menu{position:fixed;top:0;right:0;bottom:0;width:80%;background:var(--smoke);flex-direction:column;justify-content:center;align-items:flex-start;padding:3rem;transform:translateX(100%);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);gap:1.5rem;}
-  .nav-menu.open{transform:translateX(0);}
-  .menu-toggle{display:flex;flex-direction:column;gap:5px;z-index:1001;cursor:pointer;}
-  .menu-toggle span{width:24px;height:2px;background:var(--cream);transition:all 0.3s ease;}
-  .menu-toggle.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
-  .menu-toggle.open span:nth-child(2){opacity:0;}
-  .menu-toggle.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
-  .nav-cta{display:none;}
-  .section,.hero,.manifesto-section,.stats-section{padding:5rem 1.5rem;}
-  .hero{padding-top:7rem;}
-  .section-header{grid-template-columns:1fr;gap:1rem;}
-  .form-row{grid-template-columns:1fr;}
-  .books-grid,.blog-grid,.products-grid,.headshot-gallery,.about-gallery,.testimonials-grid{grid-template-columns:1fr;}
-  .newsletter-form{flex-direction:column;}
-  .footer-top{grid-template-columns:1fr;}
-  .footer-bottom{flex-direction:column;gap:1rem;text-align:center;}
-  .hero-image-side{display:none;}
-  .hero-badge{width:90px;height:90px;font-size:0.7rem;}
-  .stats-grid{grid-template-columns:1fr 1fr;}
-  .book-3d-container{max-width:280px;}
-  .book-cover-ribbon{left:-2.2rem;font-size:0.6rem;padding:0.4rem 2.5rem;}
-  .cursor-dot, .cursor-outline{display:none;}
-}
-</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200..900;1,9..144,200..900&family=Outfit:wght@200;300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">  
 </head>
+
 <body>
 
-<canvas id="bg-canvas"></canvas>
-<div class="bg-overlay"></div>
-<div class="cursor-dot"></div>
-<div class="cursor-outline"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg-overlay"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
 
-<!-- Navigation -->
-<nav class="nav" id="nav">
-  <div class="nav-logo" data-page="home"><span class="dot"></span><span>M.L. Goodlow</span></div>
-  <ul class="nav-menu" id="navMenu">
-    <li><a class="nav-link active" data-page="home" data-num="01">Home</a></li>
-    <li><a class="nav-link" data-page="about" data-num="02">About</a></li>
-    <li><a class="nav-link" data-page="books" data-num="03">Books</a></li>
-    <li><a class="nav-link" data-page="blog" data-num="04">Blog</a></li>
-    <li><a class="nav-link" data-page="media" data-num="05">Media/Press</a></li>
-    <li><a class="nav-link" data-page="testimonials" data-num="06">Reviews</a></li>
-    <li><a class="nav-link" data-page="store" data-num="07">Store</a></li>
-    <li><a class="nav-link" data-page="contact" data-num="08">Contact</a></li>
-  </ul>
-  <button class="nav-cta" data-page="contact">Newsletter</button>
-  <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
-</nav>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-logo" data-page="home"><span class="dot"></span><span>M.L. Goodlow</span></div>
+    <ul class="nav-menu" id="navMenu">
+      <li><a class="nav-link active" data-page="home" data-num="01">Home</a></li>
+      <li><a class="nav-link" data-page="about" data-num="02">About</a></li>
+      <li><a class="nav-link" data-page="books" data-num="03">Books</a></li>
+      <li><a class="nav-link" data-page="blog" data-num="04">Blog</a></li>
+      <li><a class="nav-link" data-page="media" data-num="05">Media/Press</a></li>
+      <li><a class="nav-link" data-page="testimonials" data-num="06">Reviews</a></li>
+      <li><a class="nav-link" data-page="store" data-num="07">Store</a></li>
+      <li><a class="nav-link" data-page="contact" data-num="08">Contact</a></li>
+    </ul>
+    <button class="nav-cta" data-page="contact">Newsletter</button>
+    <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+  </nav>
 
-<div class="page-transition" id="pageTransition"></div>
+  <div class="page-transition" id="pageTransition"><span class="page-transition-mark">M.L. Goodlow</span></div>
 
-<!-- ============== HOME PAGE ============== -->
-<section class="page active" id="page-home">
-  <div class="hero">
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-eyebrow"><span class="line"></span><span>LGBTQ+ Sport &amp; Contemporary Romance</span></div>
-        <h1 class="hero-title">
-          <span class="ln"><span>Goalie.</span></span>
-          <span class="ln"><span class="accent">Author.</span></span>
-          <span class="ln"><span>Advocate.</span></span>
-        </h1>
-        <div class="hero-tagline">
-          <span>Sweat, Sacrifice</span><span class="sep"></span>
-          <span>&amp; Second Chances</span>
-        </div>
-        <p class="hero-quote">"Sometimes the strongest team is the one standing beside you — the greatest victories happen off the ice."</p>
-        <div class="hero-cta-group">
-          <button class="btn btn-primary" data-page="books">Meet the Book <span class="arrow">→</span></button>
-          <button class="btn btn-ghost" data-page="about">About M.L. <span class="arrow">→</span></button>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-image-card hero-image-main"><img src="images/author-goalie-standing.jpeg" alt="M.L. Goodlow, sled hockey goalie, on the ice"></div>
-        <div class="hero-image-card hero-image-side"><img src="images/author-portrait.png" alt="M.L. Goodlow, author portrait"></div>
-        <div class="hero-badge">
-          <svg viewBox="0 0 100 100"><defs><path id="circle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"/></defs><text font-family="Fraunces" font-size="9" fill="currentColor" letter-spacing="1"><textPath href="#circle">DEBUT NOVEL · OUT NOW · DEBUT NOVEL · OUT NOW ·</textPath></text></svg>
-          <span style="position:relative;z-index:2;font-family:var(--serif);font-style:italic;font-size:1rem;text-align:center;">M.L.<br>G.</span>
-        </div>
-      </div>
-    </div>
-    <div class="scroll-indicator"><span>Scroll</span><div class="scroll-line"></div></div>
-    <div class="hero-marquee">
-      <div class="marquee-track">
-        <span>Between The Blue Lines <span class="star">✦</span> Sweat <span class="star">✦</span> Sacrifice <span class="star">✦</span> Second Chances <span class="star">✦</span> Every Shift. Every Choice. Every Second Counts. <span class="star">✦</span></span>
-        <span>Between The Blue Lines <span class="star">✦</span> Sweat <span class="star">✦</span> Sacrifice <span class="star">✦</span> Second Chances <span class="star">✦</span> Every Shift. Every Choice. Every Second Counts. <span class="star">✦</span></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Manifesto Section -->
-  <div class="manifesto-section">
-    <p class="manifesto-text">"Every shift. <em>Every choice.</em> Every second counts." <span class="gold">Sweat, Sacrifice, and Second Chances</span> — that's the heart of <em>Between the Blue Lines.</em></p>
-    <div class="manifesto-divider"></div>
-  </div>
-
-  <!-- Stats Section -->
-  <div class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-item"><div class="stat-num">16</div><div class="stat-label">Years in the Air Force</div></div>
-      <div class="stat-item"><div class="stat-num">25</div><div class="stat-label">Years as a State Trooper</div></div>
-      <div class="stat-item"><div class="stat-num"><em>1</em></div><div class="stat-label">Debut Novel</div></div>
-      <div class="stat-item"><div class="stat-num"><em>∞</em></div><div class="stat-label">Sweat, Sacrifice &amp; Second Chances</div></div>
-    </div>
-  </div>
-
-  <!-- Horizontal Scroll Books Section -->
-  <div class="h-scroll-section" id="hScrollBooks">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-num">— Behind The Blue Lines</div>
-        <h2 class="section-title">Love stories <span class="italic">that play rough.</span></h2>
-      </div>
-    </div>
-    <div class="h-scroll-track" id="hScrollTrack">
-      <div class="h-scroll-card" data-page="books">
-        <div class="cover"><img src="images/book-cover.jpg" alt="Between the Blue Lines book cover"></div>
-        <div class="genre-tag">M/M · Hockey Romance</div>
-        <h4>Between the <em>Blue Lines</em></h4>
-      </div>
-      <div class="h-scroll-card" data-page="about">
-        <div class="cover"><img src="images/author-goalie-action.jpeg" alt="M.L. Goodlow guarding the net as a sled hockey goalie"></div>
-        <div class="genre-tag">On the Ice</div>
-        <h4>Guarding <em>the Net</em></h4>
-      </div>
-      <div class="h-scroll-card" data-page="about">
-        <div class="cover"><img src="images/author-fulllength.jpeg" alt="M.L. Goodlow on the ice in full sled hockey gear"></div>
-        <div class="genre-tag">Para Sled Hockey</div>
-        <h4>Every Shift, <em>Every Save</em></h4>
-      </div>
-      <div class="h-scroll-card" data-page="store">
-        <div class="cover"><img src="images/author-closeup.jpeg" alt="M.L. Goodlow, author"></div>
-        <div class="genre-tag">Coming to Shelves</div>
-        <h4>Shop the <em>Debut</em></h4>
-      </div>
-    </div>
-  </div>
-
-  <!-- Reviews Preview -->
-  <div class="section" style="padding-top:4rem;">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-num">— Praise</div>
-        <h2 class="section-title">Words from <span class="italic">the readers.</span></h2>
-      </div>
-      <div class="testimonials-featured" style="padding:3rem 0;">
-        <blockquote style="font-size:clamp(1.5rem,3vw,2.2rem);">Reviews for <em>Between the Blue Lines</em> are on their way.</blockquote>
-        <div class="source">Be one of the first to read it — <span style="cursor:pointer;color:var(--crimson-bright);" data-page="contact">share your thoughts</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Newsletter CTA -->
-  <div class="section" style="padding-top:4rem; padding-bottom:8rem;">
-    <div class="newsletter-block">
-      <h3>Join the <em>Newsletter</em></h3>
-      <p>Get book news, cover reveals, bonus scenes, and exclusive updates — straight from M.L. Goodlow.</p>
-      <form class="newsletter-form" id="newsletterForm">
-        <input type="email" placeholder="your@email.com" required>
-        <button type="submit">Subscribe</button>
-      </form>
-      <div class="newsletter-success" id="newsletterSuccess">Thank you for subscribing!</div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== ABOUT PAGE ============== -->
-<section class="page" id="page-about">
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-num">02 — The Storyteller</div>
-        <h2 class="section-title">About <span class="italic">the Author</span></h2>
-      </div>
-      <div class="about-intro">
-        <div class="about-image-stack">
-          <img class="about-img-1" src="images/author-fulllength.jpeg" alt="M.L. Goodlow, sled hockey goalie, on the ice">
-          <img class="about-img-2" src="images/author-portrait.png" alt="M.L. Goodlow, author portrait">
-          <div class="about-img-decor"></div>
-        </div>
-        <div class="about-text">
-          <h3>M.L. <em>Goodlow</em></h3>
-          <p class="lead">Goalie. Author. Advocate.</p>
-          <p>M.L. Goodlow is a new author based in the Pacific Northwest, where she lives alongside her battle buddy and loyal service dog, Seti. When she's not writing, she can often be found on the ice as a goalie in Para Ice Hockey, getting lost in a good book, or planning her next travel adventure. A passionate hockey fan, she brings the same dedication, focus, and heart to the sport that she does to her storytelling.</p>
-          <p>Rain, evergreens, and hockey all somehow make perfect sense together in the Pacific Northwest she calls home. A proud Air Force veteran of 16 years and a retired state trooper after 25 years of service, M.L. traded in her uniforms for storytelling — but still brings the same dedication and grit to everything she does.</p>
-          <p>She's just beginning her writing journey, bringing a lifelong love of storytelling and found family to the page. "I've always had stories in my head," she says, "but one day I decided it was time to share them instead of keeping them to myself." She writes M/M sports and contemporary romance because she loves creating characters who find love, hope, and happiness despite life's challenges.</p>
-        </div>
-      </div>
-      <div class="duality">
-        <div class="duality-card">
-          <div class="icon"><i class="fa-solid fa-hockey-puck"></i></div>
-          <div class="num">01 / On the Ice</div>
-          <h4>Goalie. <em>Guardian.</em></h4>
-          <p>An avid Para Sled Hockey player and goalie, M.L. brings decades of discipline from the Air Force and state trooper service onto the rink — protecting the net, reading the play, and never backing down from the puck.</p>
-        </div>
-        <div class="duality-card">
-          <div class="icon"><i class="fa-solid fa-feather-pointed"></i></div>
-          <div class="num">02 / On the Page</div>
-          <h4>Author. <em>Storyteller.</em></h4>
-          <p>Writing LGBTQ+ Sport and Contemporary Romance, M.L. crafts stories about trust, found family, and characters who discover love exactly when they least expect it.</p>
-        </div>
-      </div>
-      <div class="about-quote">
-        <blockquote>"I write stories about characters who find <span class="highlight">love, hope, and happiness</span> despite life's challenges."</blockquote>
-        <div class="attribution">M.L. Goodlow · Author of Between the Blue Lines</div>
-      </div>
-      <div class="section-header" style="margin-top:6rem;">
-        <div class="section-num">— In Frame</div>
-        <h2 class="section-title" style="font-size:2.2rem;">Author <span class="italic">Gallery</span></h2>
-      </div>
-      <div class="about-gallery">
-        <div class="gallery-item"><img src="images/author-goalie-action.jpeg" alt="M.L. Goodlow in sled hockey goalie gear"></div>
-        <div class="gallery-item"><img src="images/author-closeup.jpeg" alt="M.L. Goodlow close-up on the ice"></div>
-        <div class="gallery-item"><img src="images/author-smiling.jpeg" alt="M.L. Goodlow smiling on the ice"></div>
-        <div class="gallery-item"><img src="images/author-portrait.png" alt="M.L. Goodlow author portrait"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== BOOKS PAGE ============== -->
-<section class="page" id="page-books">
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-num">03 — The Library</div>
-        <h2 class="section-title">Published <span class="italic">&amp; Upcoming</span></h2>
-      </div>
-      
-      <!-- Featured Book Section -->
-      <div class="featured-book">
-        <div class="book-3d-container">
-          <div class="book-showcase-glow"></div>
-          <div class="book-cover-ribbon">Debut Novel</div>
-          <div class="book-cover-showcase book-card-cover"><img src="images/book-cover.jpg" alt="Between the Blue Lines book cover"></div>
-        </div>
-        <div class="featured-book-info">
-          <div class="label">★ Featured Release</div>
-          <h3>Between the <em>Blue Lines</em></h3>
-          <div class="author">by M.L. Goodlow</div>
-          <p class="blurb">Between the Blue Lines is an emotional M/M hockey romance about learning to trust, finding love when you least expect it, and discovering that the strongest team is the one standing beside you. Filled with authentic hockey action, found family, humor, and heartfelt moments, this story proves that sometimes the greatest victories happen off the ice.</p>
-          <div class="meta">
-            <div class="meta-item"><div class="lbl">Genre</div><div class="val">M/M Hockey Romance</div></div>
-            <div class="meta-item"><div class="lbl">Status</div><div class="val">Debut Novel</div></div>
+  <!-- ============== HOME PAGE ============== -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-eyebrow"><span class="line"></span><span>LGBTQ+ Sport &amp; Contemporary Romance</span></div>
+          <h1 class="hero-title">
+            <span class="ln"><span>Goalie.</span></span>
+            <span class="ln"><span class="accent">Author.</span></span>
+            <span class="ln"><span>Advocate.</span></span>
+          </h1>
+          <div class="hero-tagline">
+            <span>Sweat, Sacrifice</span><span class="sep"></span>
+            <span>&amp; Second Chances</span>
           </div>
-          <div class="actions">
-            <button class="btn btn-primary" data-page="store">Shop the Book <span class="arrow">→</span></button>
-            <button class="btn btn-ghost" data-page="contact">Get Notified</button>
+          <p class="hero-quote">"Sometimes the strongest team is the one standing beside you — the greatest victories
+            happen off the ice."</p>
+          <div class="hero-cta-group">
+            <button class="btn btn-primary" data-page="books">Meet the Book <span class="arrow">→</span></button>
+            <button class="btn btn-ghost" data-page="about">About M.L. <span class="arrow">→</span></button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-image-card hero-image-main"><img src="images/author-goalie-standing.jpeg"
+              alt="M.L. Goodlow, sled hockey goalie, on the ice"></div>
+          <div class="hero-image-card hero-image-side"><img src="images/author-portrait.png"
+              alt="M.L. Goodlow, author portrait"></div>
+          <div class="hero-badge">
+            <svg viewBox="0 0 100 100">
+              <defs>
+                <path id="circle" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none" />
+              </defs><text font-family="Fraunces" font-size="9" fill="currentColor" letter-spacing="1">
+                <textPath href="#circle">DEBUT NOVEL · OUT NOW · DEBUT NOVEL · OUT NOW ·</textPath>
+              </text>
+            </svg>
+            <span
+              style="position:relative;z-index:2;font-family:var(--serif);font-style:italic;font-size:1rem;text-align:center;">M.L.<br>G.</span>
           </div>
         </div>
       </div>
-
-      <div class="section-header" style="margin-top:2rem;">
-        <div class="section-num">— What's Next</div>
-        <h2 class="section-title" style="font-size:2.2rem;">More Stories <span class="italic">Coming Soon</span></h2>
+      <div class="scroll-indicator"><span>Scroll</span>
+        <div class="scroll-line"></div>
       </div>
-      <div class="books-grid" id="booksGrid">
-        <div class="book-card soon-card">
-          <div class="book-card-cover soon-cover"><i class="fa-solid fa-hockey-puck"></i></div>
-          <div class="genre-tag">In the Works</div>
-          <h4>Next <em>Release</em></h4>
-          <p class="blurb-short">M.L. is lacing up for the next story. Join the newsletter to be first to know.</p>
-          <div class="book-meta"><span>TBA</span></div>
-        </div>
-        <div class="book-card soon-card">
-          <div class="book-card-cover soon-cover"><i class="fa-solid fa-feather-pointed"></i></div>
-          <div class="genre-tag">In the Works</div>
-          <h4>Untitled <em>Project</em></h4>
-          <p class="blurb-short">More found-family romance is on the way — details coming soon.</p>
-          <div class="book-meta"><span>TBA</span></div>
-        </div>
-        <div class="book-card soon-card" data-page="contact">
-          <div class="book-card-cover soon-cover"><i class="fa-solid fa-envelope"></i></div>
-          <div class="genre-tag">Stay in the Loop</div>
-          <h4>Join the <em>Newsletter</em></h4>
-          <p class="blurb-short">Get cover reveals, bonus scenes, and release news before anyone else.</p>
-          <div class="book-meta"><span>Sign up →</span></div>
+      <div class="hero-marquee">
+        <div class="marquee-track">
+          <span>Between The Blue Lines <span class="star">✦</span> Sweat <span class="star">✦</span> Sacrifice <span
+              class="star">✦</span> Second Chances <span class="star">✦</span> Every Shift. Every Choice. Every Second
+            Counts. <span class="star">✦</span></span>
+          <span>Between The Blue Lines <span class="star">✦</span> Sweat <span class="star">✦</span> Sacrifice <span
+              class="star">✦</span> Second Chances <span class="star">✦</span> Every Shift. Every Choice. Every Second
+            Counts. <span class="star">✦</span></span>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============== BLOG PAGE ============== -->
-<section class="page" id="page-blog">
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-num">04 — The Journal</div>
-        <h2 class="section-title">Blog &amp; <span class="italic">Articles</span></h2>
-      </div>
-      <div class="testimonials-featured" style="padding:3rem 0 5rem;">
-        <blockquote style="font-size:clamp(1.6rem,3.2vw,2.4rem);">The blog is warming up on the bench — <em>first post drops soon.</em></blockquote>
-        <div class="source">Sled hockey stories, writing life, and behind-the-scenes updates</div>
-      </div>
-      <div class="blog-grid">
-        <div class="blog-card">
-          <div class="blog-card-image"><img src="images/author-goalie-action.jpeg" alt="M.L. Goodlow on the ice"></div>
-          <div class="category">Writing Life</div>
-          <h4>How Sled Hockey Shaped My Storytelling</h4>
-          <p class="excerpt">Coming soon — a look at what the rink taught M.L. about grit, discipline, and character.</p>
-          <div class="blog-meta"><span>Coming Soon</span></div>
+    <!-- Manifesto Section -->
+    <div class="manifesto-section">
+      <p class="manifesto-text">"Every shift. <em>Every choice.</em> Every second counts." <span class="gold">Sweat,
+          Sacrifice, and Second Chances</span> — that's the heart of <em>Between the Blue Lines.</em></p>
+      <div class="manifesto-divider"></div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">16</div>
+          <div class="stat-label">Years in the Air Force</div>
         </div>
-        <div class="blog-card">
-          <div class="blog-card-image"><img src="images/author-smiling.jpeg" alt="M.L. Goodlow smiling"></div>
-          <div class="category">Behind the Book</div>
-          <h4>Writing Between the Blue Lines</h4>
-          <p class="excerpt">Coming soon — the story behind the story, from first draft to final cover.</p>
-          <div class="blog-meta"><span>Coming Soon</span></div>
+        <div class="stat-item">
+          <div class="stat-num">25</div>
+          <div class="stat-label">Years as a State Trooper</div>
         </div>
-        <div class="blog-card" data-page="contact">
-          <div class="blog-card-image"><img src="images/author-closeup.jpeg" alt="M.L. Goodlow"></div>
-          <div class="category">Stay Updated</div>
-          <h4>Don't Miss a Post</h4>
-          <p class="excerpt">Subscribe to the newsletter and get new articles delivered as soon as they publish.</p>
-          <div class="blog-meta"><span>Join the Newsletter →</span></div>
+        <div class="stat-item">
+          <div class="stat-num"><em>1</em></div>
+          <div class="stat-label">Debut Novel</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><em>∞</em></div>
+          <div class="stat-label">Sweat, Sacrifice &amp; Second Chances</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============== MEDIA/PRESS PAGE ============== -->
-<section class="page" id="page-media">
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-num">05 — Media &amp; Press</div>
-        <h2 class="section-title">Press <span class="italic">Kit</span></h2>
-      </div>
-      <p class="media-header-quote">"Every shift. Every choice. <span class="highlight">Every second counts.</span>"</p>
-      <div class="press-kit">
-        <div class="press-kit-text">
-          <h3>Assets &amp; Downloads</h3>
-          <p>Members of the media, bloggers, and event organizers are welcome to reach out for official assets, including headshots, the book cover, and author bio. For interviews or press inquiries, please use the contact page.</p>
-          <ul class="press-kit-list">
-            <li><span class="lbl"><i class="fa-solid fa-image"></i> Author Headshots</span></li>
-            <li><span class="lbl"><i class="fa-solid fa-book"></i> Book Cover — Between the Blue Lines</span></li>
-            <li><span class="lbl"><i class="fa-solid fa-file-lines"></i> Author Bio</span></li>
-          </ul>
-          <button class="btn btn-primary" data-page="contact">Request Press Kit <span class="arrow">→</span></button>
+    <!-- About Teaser Section -->
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">— The Storyteller</div>
+          <h2 class="section-title">Meet <span class="italic">M.L. Goodlow.</span></h2>
         </div>
-        <div class="headshot-gallery">
-          <div class="headshot-item"><img src="images/author-portrait.png" alt="M.L. Goodlow headshot 1"></div>
-          <div class="headshot-item"><img src="images/author-smiling.jpeg" alt="M.L. Goodlow headshot 2"></div>
-          <div class="headshot-item"><img src="images/author-closeup.jpeg" alt="M.L. Goodlow headshot 3"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== TESTIMONIALS / REVIEWS PAGE ============== -->
-<section class="page" id="page-testimonials">
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-num">06 — Reviews</div>
-        <h2 class="section-title">Testimonials <span class="italic">&amp; Reviews</span></h2>
-      </div>
-      <div class="testimonials-featured">
-        <blockquote>"Sometimes the strongest team is the one <span class="highlight">standing beside you.</span>"</blockquote>
-        <div class="source">Between the Blue Lines · M.L. Goodlow</div>
-      </div>
-      <div class="testimonials-featured" style="padding-top:0;">
-        <blockquote style="font-size:clamp(1.4rem,2.6vw,2rem);">Reader reviews are coming soon.</blockquote>
-        <div class="source">Between the Blue Lines is just getting started — check back soon, or be the first to share your thoughts.</div>
-        <div style="margin-top:2rem;"><button class="btn btn-primary" data-page="contact">Leave a Review <span class="arrow">→</span></button></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== STORE PAGE ============== -->
-<section class="page" id="page-store">
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-num">07 — Online Store</div>
-        <h2 class="section-title">Official <span class="italic">Merchandise</span></h2>
-      </div>
-      <div class="store-hero">
-        <div class="store-hero-text">
-          <h3>Between the <em>Blue Lines.</em></h3>
-          <p>"Sweat, Sacrifice, and Second Chances." Own the debut novel from M.L. Goodlow — an emotional M/M hockey romance about trust, found family, and victories that happen off the ice.</p>
-          <button class="btn btn-primary" data-page="contact">Get Notified at Launch <span class="arrow">→</span></button>
-        </div>
-        <div class="store-featured-product">
-          <img src="images/book-cover.jpg" alt="Between the Blue Lines book cover">
-          <div class="price-tag">Debut Release</div>
-        </div>
-      </div>
-      <div class="section-header" style="margin-bottom:3rem;">
-        <div class="section-num">— Choose Your Format</div>
-        <h2 class="section-title" style="font-size:2.2rem;">Available <span class="italic">Formats</span></h2>
-      </div>
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-image"><span class="badge">Paperback</span><img src="images/book-cover.jpg" alt="Between the Blue Lines paperback"></div>
-          <div class="product-info"><div class="category">Print Edition</div><h4>Between the Blue Lines — Paperback</h4><p class="desc">The full novel in print, cover art included.</p><div class="price-row"><div class="price">Coming Soon</div><button class="add-btn" title="Notify me"><i class="fa-solid fa-bell"></i></button></div></div>
-        </div>
-        <div class="product-card">
-          <div class="product-image"><span class="badge">eBook</span><img src="images/book-cover.jpg" alt="Between the Blue Lines eBook"></div>
-          <div class="product-info"><div class="category">Digital Edition</div><h4>Between the Blue Lines — eBook</h4><p class="desc">Read anywhere, on any device.</p><div class="price-row"><div class="price">Coming Soon</div><button class="add-btn" title="Notify me"><i class="fa-solid fa-bell"></i></button></div></div>
-        </div>
-        <div class="product-card">
-          <div class="product-image"><span class="badge">Signed</span><img src="images/book-cover.jpg" alt="Between the Blue Lines signed paperback"></div>
-          <div class="product-info"><div class="category">Limited Edition</div><h4>Signed Paperback</h4><p class="desc">A personally signed copy, while supplies last.</p><div class="price-row"><div class="price">Coming Soon</div><button class="add-btn" title="Notify me"><i class="fa-solid fa-bell"></i></button></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============== CONTACT PAGE ============== -->
-<section class="page" id="page-contact">
-  <div class="section">
-    <div class="section-inner">
-      <div class="section-header">
-        <div class="section-num">08 — Contact</div>
-        <h2 class="section-title">Get <span class="italic">in Touch</span></h2>
-      </div>
-      <div class="contact-layout">
-        <div class="contact-form">
-          <h3>Send a Message</h3>
-          <p class="sub">For inquiries, events, or just to say hello, fill out the form below.</p>
-          <div class="form-success" id="formSuccess"><i class="fa-solid fa-check-circle"></i><span>Thank you. Your message has been sent.</span></div>
-          <form id="contactForm" novalidate>
-            <div class="form-row">
-              <div class="form-field"><label for="firstName">First Name</label><input type="text" id="firstName" name="firstName" required><div class="error-msg">Please enter your first name.</div></div>
-              <div class="form-field"><label for="lastName">Last Name</label><input type="text" id="lastName" name="lastName" required><div class="error-msg">Please enter your last name.</div></div>
+        <div class="about-intro">
+          <div class="about-image-stack">
+            <img class="about-img-1" src="images/author-fulllength.jpeg" alt="M.L. Goodlow, sled hockey goalie, on the ice">
+            <img class="about-img-2" src="images/author-portrait.png" alt="M.L. Goodlow, author portrait">
+            <div class="about-img-decor"></div>
+          </div>
+          <div class="about-text">
+            <h3>Goalie. <em>Author.</em> Advocate.</h3>
+            <p class="lead">A voice shaped by service, sport, and story.</p>
+            <p>M.L. Goodlow is a new author based in the Pacific Northwest, where she lives alongside her battle buddy and loyal service dog, Seti. A proud Air Force veteran of 16 years and a retired state trooper of 25 years, she brings that same discipline onto the ice as a Para Sled Hockey goalie — and onto the page as a storyteller.</p>
+            <div class="actions" style="margin-top:2rem;">
+              <button class="btn btn-primary" data-page="about">Read Her Full Story <span class="arrow">→</span></button>
             </div>
-            <div class="form-row">
-              <div class="form-field"><label for="email">Email Address</label><input type="email" id="email" name="email" required><div class="error-msg">Please enter a valid email.</div></div>
-              <div class="form-field"><label for="subject">Subject</label><select id="subject" name="subject"><option value="interview">Interview Request</option><option value="event">Event / Speaking</option><option value="press">Press Inquiry</option><option value="fan">Reader Mail</option><option value="other">Other</option></select></div>
-            </div>
-            <div class="form-row">
-              <div class="form-field full"><label for="message">Your Message</label><textarea id="message" name="message" required></textarea><div class="error-msg">Please enter a message.</div></div>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message <span class="arrow">→</span></button>
-          </form>
-        </div>
-        <div class="contact-sidebar">
-          <div class="sidebar-block"><h4>Direct</h4><p>mlgoodlow6@gmail.com</p><p>For press inquiries, events, or reader mail, please use the contact form.</p></div>
-          <div class="sidebar-block"><h4>Follow Along</h4><p>Connect on social media.</p><div class="social-row"><a href="https://www.facebook.com/search/top?q=M.L.%20Goodlow" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a><a href="https://www.instagram.com/m.lgoodlow/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></div></div>
-          <div class="contact-portrait"><img src="images/author-portrait.png" alt="M.L. Goodlow"></div>
+          </div>
         </div>
       </div>
-      
+    </div>
+
+    <!-- Book Teaser Section -->
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">— The Debut Novel</div>
+          <h2 class="section-title">Between the <span class="italic">Blue Lines.</span></h2>
+        </div>
+        <div class="featured-book">
+          <div class="book-3d-container">
+            <div class="book-showcase-glow"></div>
+            <div class="book-cover-ribbon">Debut Novel</div>
+            <div class="book-cover-showcase book-card-cover"><img src="images/book-cover.jpg" alt="Between the Blue Lines book cover"></div>
+          </div>
+          <div class="featured-book-info">
+            <div class="label">★ Featured Release</div>
+            <h3>Between the <em>Blue Lines</em></h3>
+            <div class="author">by M.L. Goodlow</div>
+            <p class="blurb">An emotional M/M hockey romance about learning to trust, finding love when you least expect it, and discovering that the strongest team is the one standing beside you. Filled with authentic hockey action, found family, humor, and heartfelt moments.</p>
+            <div class="meta">
+              <div class="meta-item"><div class="lbl">Genre</div><div class="val">M/M Hockey Romance</div></div>
+              <div class="meta-item"><div class="lbl">Status</div><div class="val">Debut Novel</div></div>
+            </div>
+            <div class="actions">
+              <button class="btn btn-primary" data-page="store">Shop the Book <span class="arrow">→</span></button>
+              <button class="btn btn-ghost" data-page="books">More Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Blog Teaser Section -->
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">— The Journal</div>
+          <h2 class="section-title">From the <span class="italic">Blog.</span></h2>
+        </div>
+        <div class="blog-grid">
+          <div class="blog-card">
+            <div class="blog-card-image"><img src="images/author-goalie-action.jpeg" alt="M.L. Goodlow on the ice"></div>
+            <div class="category">Writing Life</div>
+            <h4>How Sled Hockey Shaped My Storytelling</h4>
+            <p class="excerpt">Coming soon — a look at what the rink taught M.L. about grit, discipline, and character.</p>
+            <div class="blog-meta"><span>Coming Soon</span></div>
+          </div>
+          <div class="blog-card">
+            <div class="blog-card-image"><img src="images/author-smiling.jpeg" alt="M.L. Goodlow smiling"></div>
+            <div class="category">Behind the Book</div>
+            <h4>Writing Between the Blue Lines</h4>
+            <p class="excerpt">Coming soon — the story behind the story, from first draft to final cover.</p>
+            <div class="blog-meta"><span>Coming Soon</span></div>
+          </div>
+          <div class="blog-card" data-page="blog">
+            <div class="blog-card-image"><img src="images/author-closeup.jpeg" alt="M.L. Goodlow"></div>
+            <div class="category">Visit the Journal</div>
+            <h4>Read More on the Blog</h4>
+            <p class="excerpt">See every post, past and upcoming, over on the full blog page.</p>
+            <div class="blog-meta"><span>View Blog →</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Preview -->
+    <div class="section" style="padding-top:4rem;">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">— Praise</div>
+          <h2 class="section-title">Words from <span class="italic">the readers.</span></h2>
+        </div>
+        <div class="testimonials-featured" style="padding:3rem 0;">
+          <blockquote style="font-size:clamp(1.5rem,3vw,2.2rem);">Reviews for <em>Between the Blue Lines</em> are on
+            their way.</blockquote>
+          <div class="source">Be one of the first to read it — <span style="cursor:pointer;color:var(--crimson-bright);"
+              data-page="contact">share your thoughts</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter CTA -->
+    <div class="section" style="padding-top:4rem; padding-bottom:8rem;">
       <div class="newsletter-block">
-        <h3>Subscribe to the <em>Newsletter</em></h3>
+        <h3>Join the <em>Newsletter</em></h3>
         <p>Get book news, cover reveals, bonus scenes, and exclusive updates — straight from M.L. Goodlow.</p>
-        <form class="newsletter-form" id="newsletterFormInline">
+        <form class="newsletter-form" id="newsletterForm">
           <input type="email" placeholder="your@email.com" required>
           <button type="submit">Subscribe</button>
         </form>
-        <div class="newsletter-success" id="newsletterSuccessInline">Thank you for subscribing!</div>
+        <div class="newsletter-success" id="newsletterSuccess">Thank you for subscribing!</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <h3>M.L. <em>Goodlow</em></h3>
-        <p>Author of Between the Blue Lines. Writing LGBTQ+ Sport and Contemporary Romance.</p>
-        <div class="quote-mini">"Sweat, Sacrifice, and Second Chances."</div>
+  <!-- ============== ABOUT PAGE ============== -->
+  <section class="page" id="page-about">
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">02 — The Storyteller</div>
+          <h2 class="section-title">About <span class="italic">the Author</span></h2>
+        </div>
+        <div class="about-intro">
+          <div class="about-image-stack">
+            <img class="about-img-1" src="images/author-fulllength.jpeg"
+              alt="M.L. Goodlow, sled hockey goalie, on the ice">
+            <img class="about-img-2" src="images/author-portrait.png" alt="M.L. Goodlow, author portrait">
+            <div class="about-img-decor"></div>
+          </div>
+          <div class="about-text">
+            <h3>M.L. <em>Goodlow</em></h3>
+            <p class="lead">Goalie. Author. Advocate.</p>
+            <p>M.L. Goodlow is a new author based in the Pacific Northwest, where she lives alongside her battle buddy
+              and loyal service dog, Seti. When she's not writing, she can often be found on the ice as a goalie in Para
+              Ice Hockey, getting lost in a good book, or planning her next travel adventure. A passionate hockey fan,
+              she brings the same dedication, focus, and heart to the sport that she does to her storytelling.</p>
+            <p>Rain, evergreens, and hockey all somehow make perfect sense together in the Pacific Northwest she calls
+              home. A proud Air Force veteran of 16 years and a retired state trooper after 25 years of service, M.L.
+              traded in her uniforms for storytelling — but still brings the same dedication and grit to everything she
+              does.</p>
+            <p>She's just beginning her writing journey, bringing a lifelong love of storytelling and found family to
+              the page. "I've always had stories in my head," she says, "but one day I decided it was time to share them
+              instead of keeping them to myself." She writes M/M sports and contemporary romance because she loves
+              creating characters who find love, hope, and happiness despite life's challenges.</p>
+          </div>
+        </div>
+        <div class="duality">
+          <div class="duality-card">
+            <div class="icon"><i class="fa-solid fa-hockey-puck"></i></div>
+            <div class="num">01 / On the Ice</div>
+            <h4>Goalie. <em>Guardian.</em></h4>
+            <p>An avid Para Sled Hockey player and goalie, M.L. brings decades of discipline from the Air Force and
+              state trooper service onto the rink — protecting the net, reading the play, and never backing down from
+              the puck.</p>
+          </div>
+          <div class="duality-card">
+            <div class="icon"><i class="fa-solid fa-feather-pointed"></i></div>
+            <div class="num">02 / On the Page</div>
+            <h4>Author. <em>Storyteller.</em></h4>
+            <p>Writing LGBTQ+ Sport and Contemporary Romance, M.L. crafts stories about trust, found family, and
+              characters who discover love exactly when they least expect it.</p>
+          </div>
+        </div>
+        <div class="about-quote">
+          <blockquote>"I write stories about characters who find <span class="highlight">love, hope, and
+              happiness</span> despite life's challenges."</blockquote>
+          <div class="attribution">M.L. Goodlow · Author of Between the Blue Lines</div>
+        </div>
+        <div class="section-header" style="margin-top:6rem;">
+          <div class="section-num">— In Frame</div>
+          <h2 class="section-title" style="font-size:2.2rem;">Author <span class="italic">Gallery</span></h2>
+        </div>
+        <div class="about-gallery">
+          <div class="gallery-item"><img src="images/author-goalie-action.jpeg"
+              alt="M.L. Goodlow in sled hockey goalie gear"></div>
+          <div class="gallery-item"><img src="images/author-closeup.jpeg" alt="M.L. Goodlow close-up on the ice"></div>
+          <div class="gallery-item"><img src="images/author-smiling.jpeg" alt="M.L. Goodlow smiling on the ice"></div>
+          <div class="gallery-item"><img src="images/author-portrait.png" alt="M.L. Goodlow author portrait"></div>
+        </div>
       </div>
-      <div class="footer-col"><h5>Explore</h5><ul><li><a data-page="home">Home</a></li><li><a data-page="about">About</a></li><li><a data-page="books">Books</a></li><li><a data-page="blog">Blog</a></li></ul></div>
-      <div class="footer-col"><h5>Connect</h5><ul><li><a data-page="media">Media/Press</a></li><li><a data-page="testimonials">Reviews</a></li><li><a data-page="store">Store</a></li><li><a data-page="contact">Contact</a></li></ul></div>
-      <div class="footer-col"><h5>Follow</h5><ul><li><a href="https://www.facebook.com/search/top?q=M.L.%20Goodlow" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f" style="margin-right:0.5rem;"></i> Facebook</a></li><li><a href="https://www.instagram.com/m.lgoodlow/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram" style="margin-right:0.5rem;"></i> Instagram</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <div>© 2026 M.L. Goodlow. All rights reserved.</div>
-      <div class="credits"><span>Built with <span class="heart">♥</span></span><span>·</span><span>Goalie · Author · Advocate</span></div>
+  </section>
+
+  <!-- ============== BOOKS PAGE ============== -->
+  <section class="page" id="page-books">
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">03 — The Library</div>
+          <h2 class="section-title">Published <span class="italic">&amp; Upcoming</span></h2>
+        </div>
+
+        <!-- Featured Book Section -->
+        <div class="featured-book">
+          <div class="book-3d-container">
+            <div class="book-showcase-glow"></div>
+            <div class="book-cover-ribbon">Debut Novel</div>
+            <div class="book-cover-showcase book-card-cover"><img src="images/book-cover.jpg"
+                alt="Between the Blue Lines book cover"></div>
+          </div>
+          <div class="featured-book-info">
+            <div class="label">★ Featured Release</div>
+            <h3>Between the <em>Blue Lines</em></h3>
+            <div class="author">by M.L. Goodlow</div>
+            <p class="blurb">Between the Blue Lines is an emotional M/M hockey romance about learning to trust, finding
+              love when you least expect it, and discovering that the strongest team is the one standing beside you.
+              Filled with authentic hockey action, found family, humor, and heartfelt moments, this story proves that
+              sometimes the greatest victories happen off the ice.</p>
+            <div class="meta">
+              <div class="meta-item">
+                <div class="lbl">Genre</div>
+                <div class="val">M/M Hockey Romance</div>
+              </div>
+              <div class="meta-item">
+                <div class="lbl">Status</div>
+                <div class="val">Debut Novel</div>
+              </div>
+            </div>
+            <div class="actions">
+              <button class="btn btn-primary" data-page="store">Shop the Book <span class="arrow">→</span></button>
+              <button class="btn btn-ghost" data-page="contact">Get Notified</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header" style="margin-top:2rem;">
+          <div class="section-num">— What's Next</div>
+          <h2 class="section-title" style="font-size:2.2rem;">More Stories <span class="italic">Coming Soon</span></h2>
+        </div>
+        <div class="books-grid" id="booksGrid">
+          <div class="book-card soon-card">
+            <div class="book-card-cover soon-cover"><i class="fa-solid fa-hockey-puck"></i></div>
+            <div class="genre-tag">In the Works</div>
+            <h4>Next <em>Release</em></h4>
+            <p class="blurb-short">M.L. is lacing up for the next story. Join the newsletter to be first to know.</p>
+            <div class="book-meta"><span>TBA</span></div>
+          </div>
+          <div class="book-card soon-card">
+            <div class="book-card-cover soon-cover"><i class="fa-solid fa-feather-pointed"></i></div>
+            <div class="genre-tag">In the Works</div>
+            <h4>Untitled <em>Project</em></h4>
+            <p class="blurb-short">More found-family romance is on the way — details coming soon.</p>
+            <div class="book-meta"><span>TBA</span></div>
+          </div>
+          <div class="book-card soon-card" data-page="contact">
+            <div class="book-card-cover soon-cover"><i class="fa-solid fa-envelope"></i></div>
+            <div class="genre-tag">Stay in the Loop</div>
+            <h4>Join the <em>Newsletter</em></h4>
+            <p class="blurb-short">Get cover reveals, bonus scenes, and release news before anyone else.</p>
+            <div class="book-meta"><span>Sign up →</span></div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</footer>
+  </section>
 
-<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg">Added to cart.</span></div>
+  <!-- ============== BLOG PAGE ============== -->
+  <section class="page" id="page-blog">
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">04 — The Journal</div>
+          <h2 class="section-title">Blog &amp; <span class="italic">Articles</span></h2>
+        </div>
+        <div class="testimonials-featured" style="padding:3rem 0 5rem;">
+          <blockquote style="font-size:clamp(1.6rem,3.2vw,2.4rem);">The blog is warming up on the bench — <em>first post
+              drops soon.</em></blockquote>
+          <div class="source">Sled hockey stories, writing life, and behind-the-scenes updates</div>
+        </div>
+        <div class="blog-grid">
+          <div class="blog-card">
+            <div class="blog-card-image"><img src="images/author-goalie-action.jpeg" alt="M.L. Goodlow on the ice">
+            </div>
+            <div class="category">Writing Life</div>
+            <h4>How Sled Hockey Shaped My Storytelling</h4>
+            <p class="excerpt">Coming soon — a look at what the rink taught M.L. about grit, discipline, and character.
+            </p>
+            <div class="blog-meta"><span>Coming Soon</span></div>
+          </div>
+          <div class="blog-card">
+            <div class="blog-card-image"><img src="images/author-smiling.jpeg" alt="M.L. Goodlow smiling"></div>
+            <div class="category">Behind the Book</div>
+            <h4>Writing Between the Blue Lines</h4>
+            <p class="excerpt">Coming soon — the story behind the story, from first draft to final cover.</p>
+            <div class="blog-meta"><span>Coming Soon</span></div>
+          </div>
+          <div class="blog-card" data-page="contact">
+            <div class="blog-card-image"><img src="images/author-closeup.jpeg" alt="M.L. Goodlow"></div>
+            <div class="category">Stay Updated</div>
+            <h4>Don't Miss a Post</h4>
+            <p class="excerpt">Subscribe to the newsletter and get new articles delivered as soon as they publish.</p>
+            <div class="blog-meta"><span>Join the Newsletter →</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script type="importmap">
-{ "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+  <!-- ============== MEDIA/PRESS PAGE ============== -->
+  <section class="page" id="page-media">
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">05 — Media &amp; Press</div>
+          <h2 class="section-title">Press <span class="italic">Kit</span></h2>
+        </div>
+        <p class="media-header-quote">"Every shift. Every choice. <span class="highlight">Every second counts.</span>"
+        </p>
+        <div class="press-kit">
+          <div class="press-kit-text">
+            <h3>Assets &amp; Downloads</h3>
+            <p>Members of the media, bloggers, and event organizers are welcome to reach out for official assets,
+              including headshots, the book cover, and author bio. For interviews or press inquiries, please use the
+              contact page.</p>
+            <ul class="press-kit-list">
+              <li><span class="lbl"><i class="fa-solid fa-image"></i> Author Headshots</span></li>
+              <li><span class="lbl"><i class="fa-solid fa-book"></i> Book Cover — Between the Blue Lines</span></li>
+              <li><span class="lbl"><i class="fa-solid fa-file-lines"></i> Author Bio</span></li>
+            </ul>
+            <button class="btn btn-primary" data-page="contact">Request Press Kit <span class="arrow">→</span></button>
+          </div>
+          <div class="headshot-gallery">
+            <div class="headshot-item"><img src="images/author-portrait.png" alt="M.L. Goodlow headshot 1"></div>
+            <div class="headshot-item"><img src="images/author-smiling.jpeg" alt="M.L. Goodlow headshot 2"></div>
+            <div class="headshot-item"><img src="images/author-closeup.jpeg" alt="M.L. Goodlow headshot 3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script type="module">
-import * as THREE from 'three';
+  <!-- ============== TESTIMONIALS / REVIEWS PAGE ============== -->
+  <section class="page" id="page-testimonials">
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">06 — Reviews</div>
+          <h2 class="section-title">Testimonials <span class="italic">&amp; Reviews</span></h2>
+        </div>
+        <div class="testimonials-featured">
+          <blockquote>"Sometimes the strongest team is the one <span class="highlight">standing beside you.</span>"
+          </blockquote>
+          <div class="source">Between the Blue Lines · M.L. Goodlow</div>
+        </div>
+        <div class="testimonials-featured" style="padding-top:0;">
+          <blockquote style="font-size:clamp(1.4rem,2.6vw,2rem);">Reader reviews are coming soon.</blockquote>
+          <div class="source">Between the Blue Lines is just getting started — check back soon, or be the first to share
+            your thoughts.</div>
+          <div style="margin-top:2rem;"><button class="btn btn-primary" data-page="contact">Leave a Review <span
+                class="arrow">→</span></button></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-// Custom Cursor
-const cursorDot = document.querySelector('.cursor-dot');
-const cursorOutline = document.querySelector('.cursor-outline');
-window.addEventListener('mousemove', (e) => {
-  cursorDot.style.left = e.clientX + 'px';
-  cursorDot.style.top = e.clientY + 'px';
-  cursorOutline.style.left = e.clientX + 'px';
-  cursorOutline.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, .book-card, .h-scroll-card').forEach(el => {
-  el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
-  el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
-});
+  <!-- ============== STORE PAGE ============== -->
+  <section class="page" id="page-store">
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">07 — Online Store</div>
+          <h2 class="section-title">Official <span class="italic">Merchandise</span></h2>
+        </div>
+        <div class="store-hero">
+          <div class="store-hero-text">
+            <h3>Between the <em>Blue Lines.</em></h3>
+            <p>"Sweat, Sacrifice, and Second Chances." Own the debut novel from M.L. Goodlow — an emotional M/M hockey
+              romance about trust, found family, and victories that happen off the ice.</p>
+            <button class="btn btn-primary" data-page="contact">Get Notified at Launch <span
+                class="arrow">→</span></button>
+          </div>
+          <div class="store-featured-product">
+            <img src="images/book-cover.jpg" alt="Between the Blue Lines book cover">
+            <div class="price-tag">Debut Release</div>
+          </div>
+        </div>
+        <div class="section-header" style="margin-bottom:3rem;">
+          <div class="section-num">— Choose Your Format</div>
+          <h2 class="section-title" style="font-size:2.2rem;">Available <span class="italic">Formats</span></h2>
+        </div>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image"><span class="badge">Paperback</span><img src="images/book-cover.jpg"
+                alt="Between the Blue Lines paperback"></div>
+            <div class="product-info">
+              <div class="category">Print Edition</div>
+              <h4>Between the Blue Lines — Paperback</h4>
+              <p class="desc">The full novel in print, cover art included.</p>
+              <div class="price-row">
+                <div class="price">Coming Soon</div><button class="add-btn" title="Notify me"><i
+                    class="fa-solid fa-bell"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image"><span class="badge">eBook</span><img src="images/book-cover.jpg"
+                alt="Between the Blue Lines eBook"></div>
+            <div class="product-info">
+              <div class="category">Digital Edition</div>
+              <h4>Between the Blue Lines — eBook</h4>
+              <p class="desc">Read anywhere, on any device.</p>
+              <div class="price-row">
+                <div class="price">Coming Soon</div><button class="add-btn" title="Notify me"><i
+                    class="fa-solid fa-bell"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="product-card">
+            <div class="product-image"><span class="badge">Signed</span><img src="images/book-cover.jpg"
+                alt="Between the Blue Lines signed paperback"></div>
+            <div class="product-info">
+              <div class="category">Limited Edition</div>
+              <h4>Signed Paperback</h4>
+              <p class="desc">A personally signed copy, while supplies last.</p>
+              <div class="price-row">
+                <div class="price">Coming Soon</div><button class="add-btn" title="Notify me"><i
+                    class="fa-solid fa-bell"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-// Lenis Smooth Scroll
-let lenis;
-try {
-  lenis = new Lenis({ duration: 1.15, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smoothWheel: true, smoothTouch: false });
-  lenis.on('scroll', () => { if (window.ScrollTrigger) ScrollTrigger.update(); });
-  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-  gsap.ticker.lagSmoothing(0);
-} catch(e) { console.warn('Lenis init skipped:', e); }
+  <!-- ============== CONTACT PAGE ============== -->
+  <section class="page" id="page-contact">
+    <div class="section">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="section-num">08 — Contact</div>
+          <h2 class="section-title">Get <span class="italic">in Touch</span></h2>
+        </div>
+        <div class="contact-layout">
+          <div class="contact-form">
+            <h3>Send a Message</h3>
+            <p class="sub">For inquiries, events, or just to say hello, fill out the form below.</p>
+            <div class="form-success" id="formSuccess"><i class="fa-solid fa-check-circle"></i><span>Thank you. Your
+                message has been sent.</span></div>
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-field"><label for="firstName">First Name</label><input type="text" id="firstName"
+                    name="firstName" required>
+                  <div class="error-msg">Please enter your first name.</div>
+                </div>
+                <div class="form-field"><label for="lastName">Last Name</label><input type="text" id="lastName"
+                    name="lastName" required>
+                  <div class="error-msg">Please enter your last name.</div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field"><label for="email">Email Address</label><input type="email" id="email"
+                    name="email" required>
+                  <div class="error-msg">Please enter a valid email.</div>
+                </div>
+                <div class="form-field"><label for="subject">Subject</label><select id="subject" name="subject">
+                    <option value="interview">Interview Request</option>
+                    <option value="event">Event / Speaking</option>
+                    <option value="press">Press Inquiry</option>
+                    <option value="fan">Reader Mail</option>
+                    <option value="other">Other</option>
+                  </select></div>
+              </div>
+              <div class="form-row">
+                <div class="form-field full"><label for="message">Your Message</label><textarea id="message"
+                    name="message" required></textarea>
+                  <div class="error-msg">Please enter a message.</div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message
+                <span class="arrow">→</span></button>
+            </form>
+          </div>
+          <div class="contact-sidebar">
+            <div class="sidebar-block">
+              <h4>Direct</h4>
+              <p>mlgoodlow6@gmail.com</p>
+              <p>For press inquiries, events, or reader mail, please use the contact form.</p>
+            </div>
+            <div class="sidebar-block">
+              <h4>Follow Along</h4>
+              <p>Connect on social media.</p>
+              <div class="social-row"><a href="https://www.facebook.com/search/top?q=M.L.%20Goodlow" target="_blank"
+                  rel="noopener"><i class="fa-brands fa-facebook-f"></i></a><a
+                  href="https://www.instagram.com/m.lgoodlow/" target="_blank" rel="noopener"><i
+                    class="fa-brands fa-instagram"></i></a></div>
+            </div>
+          </div>
+        </div>
 
-// Navigation
-const nav = document.getElementById('nav');
-const navMenu = document.getElementById('navMenu');
-const menuToggle = document.getElementById('menuToggle');
-const pageTransition = document.getElementById('pageTransition');
-const pages = document.querySelectorAll('.page');
-const navLinks = document.querySelectorAll('[data-page]');
-let currentPage = 'home';
-let isTransitioning = false;
+        <div class="newsletter-block">
+          <h3>Subscribe to the <em>Newsletter</em></h3>
+          <p>Get book news, cover reveals, bonus scenes, and exclusive updates — straight from M.L. Goodlow.</p>
+          <form class="newsletter-form" id="newsletterFormInline">
+            <input type="email" placeholder="your@email.com" required>
+            <button type="submit">Subscribe</button>
+          </form>
+          <div class="newsletter-success" id="newsletterSuccessInline">Thank you for subscribing!</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('open'); navMenu.classList.toggle('open'); });
-window.addEventListener('scroll', () => { if (window.scrollY > 50) nav.classList.add('scrolled'); else nav.classList.remove('scrolled'); });
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>M.L. <em>Goodlow</em></h3>
+          <p>Author of Between the Blue Lines. Writing LGBTQ+ Sport and Contemporary Romance.</p>
+          <div class="quote-mini">"Sweat, Sacrifice, and Second Chances."</div>
+        </div>
+        <div class="footer-col">
+          <h5>Explore</h5>
+          <ul>
+            <li><a data-page="home">Home</a></li>
+            <li><a data-page="about">About</a></li>
+            <li><a data-page="books">Books</a></li>
+            <li><a data-page="blog">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Connect</h5>
+          <ul>
+            <li><a data-page="media">Media/Press</a></li>
+            <li><a data-page="testimonials">Reviews</a></li>
+            <li><a data-page="store">Store</a></li>
+            <li><a data-page="contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Follow</h5>
+          <ul>
+            <li><a href="https://www.facebook.com/search/top?q=M.L.%20Goodlow" target="_blank" rel="noopener"><i
+                  class="fa-brands fa-facebook-f" style="margin-right:0.5rem;"></i> Facebook</a></li>
+            <li><a href="https://www.instagram.com/m.lgoodlow/" target="_blank" rel="noopener"><i
+                  class="fa-brands fa-instagram" style="margin-right:0.5rem;"></i> Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 M.L. Goodlow. All rights reserved.</div>
+        <div class="credits"><span>Built with <span class="heart">♥</span></span><span>·</span><span>Goalie · Author ·
+            Advocate</span></div>
+      </div>
+    </div>
+  </footer>
 
-function navigateToPage(pageId) {
-  if (pageId === currentPage || isTransitioning) return;
-  isTransitioning = true;
-  menuToggle.classList.remove('open');
-  navMenu.classList.remove('open');
-  const tl = gsap.timeline({ onComplete: () => { isTransitioning = false; } });
-  tl.to(pageTransition, { y: '0%', duration: 0.5, ease: 'power3.inOut' })
-    .call(() => {
-      pages.forEach(p => p.classList.remove('active'));
-      const newPage = document.getElementById(`page-${pageId}`);
-      if (newPage) newPage.classList.add('active');
-      document.querySelectorAll('.nav-link').forEach(link => { link.classList.toggle('active', link.dataset.page === pageId); });
-      currentPage = pageId;
-      if (lenis) lenis.scrollTo(0, { immediate: true }); else window.scrollTo(0, 0);
-      setTimeout(() => { 
-        if (window.ScrollTrigger) ScrollTrigger.refresh(); 
-        animatePageIn(newPage);
-      }, 50);
-    })
-    .to(pageTransition, { y: '-100%', duration: 0.5, ease: 'power3.inOut', delay: 0.05 });
-}
+  <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg">Added to cart.</span></div>
 
-function animatePageIn(page) {
-  if (!page) return;
-  const elements = page.querySelectorAll('.section-header, .hero-text > *, .hero-visual, .about-intro, .duality-card, .about-quote, .about-gallery .gallery-item, .featured-book, .book-card, .blog-card, .product-card, .press-kit, .headshot-item, .contact-form, .contact-sidebar, .newsletter-block, .store-hero-text, .store-featured-product, .manifesto-text, .stats-grid, .testimonials-featured, .testimonial-card, .h-scroll-card');
-  gsap.fromTo(elements, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.06, ease: 'power3.out', overwrite: true });
-}
-
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const pageId = link.dataset.page;
-    if (pageId) navigateToPage(pageId);
-  });
-});
-
-// Three.js Background
-let scene, camera, renderer, petals, iceCrystals;
-let mouseX = 0, mouseY = 0;
-
-function initThree() {
-  const canvas = document.getElementById('bg-canvas');
-  if (!canvas) return;
-  try {
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.z = 8;
-    renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const particleTexture = createParticleTexture();
-
-    const petalCount = 150;
-    const petalGeometry = new THREE.BufferGeometry();
-    const petalPositions = new Float32Array(petalCount * 3);
-    const petalData = [];
-    for (let i = 0; i < petalCount; i++) {
-      petalPositions[i * 3] = (Math.random() - 0.5) * 30;
-      petalPositions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      petalPositions[i * 3 + 2] = (Math.random() - 0.5) * 15;
-      petalData.push({ speedX: (Math.random() - 0.5) * 0.008, speedY: -Math.random() * 0.012 - 0.003, speedZ: (Math.random() - 0.5) * 0.005 });
-    }
-    petalGeometry.setAttribute('position', new THREE.BufferAttribute(petalPositions, 3));
-    const petalMaterial = new THREE.PointsMaterial({ color: 0x3f8fd6, size: 0.18, map: particleTexture, transparent: true, opacity: 0.75, blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true });
-    petals = new THREE.Points(petalGeometry, petalMaterial);
-    petals.userData.data = petalData;
-    scene.add(petals);
-
-    const iceCount = 250;
-    const iceGeometry = new THREE.BufferGeometry();
-    const icePositions = new Float32Array(iceCount * 3);
-    const iceData = [];
-    for (let i = 0; i < iceCount; i++) {
-      icePositions[i * 3] = (Math.random() - 0.5) * 40;
-      icePositions[i * 3 + 1] = (Math.random() - 0.5) * 25;
-      icePositions[i * 3 + 2] = (Math.random() - 0.5) * 20;
-      iceData.push({ speedX: (Math.random() - 0.5) * 0.004, speedY: -Math.random() * 0.005 - 0.001, speedZ: (Math.random() - 0.5) * 0.003 });
-    }
-    iceGeometry.setAttribute('position', new THREE.BufferAttribute(icePositions, 3));
-    const iceMaterial = new THREE.PointsMaterial({ color: 0xa9c4de, size: 0.08, map: particleTexture, transparent: true, opacity: 0.55, blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true });
-    iceCrystals = new THREE.Points(iceGeometry, iceMaterial);
-    iceCrystals.userData.data = iceData;
-    scene.add(iceCrystals);
-
-    window.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth - 0.5) * 2; mouseY = (e.clientY / window.innerHeight - 0.5) * 2; });
-    window.addEventListener('resize', () => { if (!camera || !renderer) return; camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
-    animate();
-  } catch(e) { console.warn('Three.js init error:', e); }
-}
-
-function createParticleTexture() {
-  const canvas = document.createElement('canvas');
-  canvas.width = 128; canvas.height = 128;
-  const ctx = canvas.getContext('2d');
-  const gradient = ctx.createRadialGradient(64, 64, 0, 64, 64, 64);
-  gradient.addColorStop(0, 'rgba(255,255,255,1)');
-  gradient.addColorStop(0.15, 'rgba(255,255,255,0.85)');
-  gradient.addColorStop(0.4, 'rgba(255,255,255,0.35)');
-  gradient.addColorStop(1, 'rgba(255,255,255,0)');
-  ctx.fillStyle = gradient; ctx.fillRect(0, 0, 128, 128);
-  const texture = new THREE.CanvasTexture(canvas); texture.needsUpdate = true;
-  return texture;
-}
-
-function animate() {
-  requestAnimationFrame(animate);
-  try {
-    if (petals) {
-      const positions = petals.geometry.attributes.position.array;
-      const data = petals.userData.data;
-      for (let i = 0; i < data.length; i++) {
-        positions[i * 3] += data[i].speedX + Math.sin(Date.now() * 0.0005 + i) * 0.002;
-        positions[i * 3 + 1] += data[i].speedY;
-        positions[i * 3 + 2] += data[i].speedZ;
-        if (positions[i * 3 + 1] < -12) { positions[i * 3 + 1] = 12; positions[i * 3] = (Math.random() - 0.5) * 30; }
-        if (positions[i * 3] > 15) positions[i * 3] = -15;
-        if (positions[i * 3] < -15) positions[i * 3] = 15;
-      }
-      petals.geometry.attributes.position.needsUpdate = true;
-      petals.rotation.y += 0.0008;
-    }
-    if (iceCrystals) {
-      const positions = iceCrystals.geometry.attributes.position.array;
-      const data = iceCrystals.userData.data;
-      for (let i = 0; i < data.length; i++) {
-        positions[i * 3] += data[i].speedX;
-        positions[i * 3 + 1] += data[i].speedY;
-        positions[i * 3 + 2] += data[i].speedZ;
-        if (positions[i * 3 + 1] < -12) { positions[i * 3 + 1] = 12; positions[i * 3] = (Math.random() - 0.5) * 40; }
-      }
-      iceCrystals.geometry.attributes.position.needsUpdate = true;
-      iceCrystals.rotation.y -= 0.0004;
-    }
-    if (camera) { camera.position.x += (mouseX * 0.8 - camera.position.x) * 0.04; camera.position.y += (-mouseY * 0.5 - camera.position.y) * 0.04; camera.lookAt(scene.position); }
-    if (renderer && scene && camera) renderer.render(scene, camera);
-  } catch(e) { console.warn('Three.js animate error:', e); }
-}
-
-initThree();
-
-// ScrollTrigger Animations
-if (window.ScrollTrigger) {
-  const batchConfig = (extra = {}) => Object.assign({ onEnter: (elements) => { gsap.fromTo(elements, { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out', overwrite: true }); }, start: 'top 85%' }, extra);
-  ScrollTrigger.batch('.book-card', batchConfig());
-  ScrollTrigger.batch('.blog-card', batchConfig());
-  ScrollTrigger.batch('.product-card', batchConfig());
-  ScrollTrigger.batch('.gallery-item', batchConfig({ onEnter: (elements) => { gsap.fromTo(elements, { y: 40, opacity: 0, scale: 0.95 }, { y: 0, opacity: 1, scale: 1, duration: 0.9, stagger: 0.08, ease: 'power3.out', overwrite: true }); } }));
-  ScrollTrigger.batch('.headshot-item', batchConfig());
-  ScrollTrigger.batch('.stat-item', batchConfig());
-  ScrollTrigger.batch('.section-header', batchConfig({ onEnter: (elements) => { gsap.fromTo(elements, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', overwrite: true }); } }));
-  ScrollTrigger.batch('.about-quote, .media-header-quote, .testimonials-featured, .manifesto-section', batchConfig({ onEnter: (elements) => { gsap.fromTo(elements, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', overwrite: true }); }, start: 'top 80%' }));
-  ScrollTrigger.batch('.dual-card, .duality-card, .testimonial-card', batchConfig());
-
-  // Horizontal Scroll
-  const hScrollTrack = document.getElementById('hScrollTrack');
-  if (hScrollTrack) {
-    gsap.to(hScrollTrack, {
-      x: () => -(hScrollTrack.scrollWidth - window.innerWidth + 48),
-      ease: "none",
-      scrollTrigger: {
-        trigger: "#hScrollBooks",
-        start: "top top",
-        end: () => "+=" + (hScrollTrack.scrollWidth - window.innerWidth),
-        scrub: 1,
-        pin: true,
-        invalidateOnRefresh: true
-      }
-    });
-  }
-
-  // Parallax
-  gsap.to('.about-img-1', { yPercent: -15, ease: "none", scrollTrigger: { trigger: ".about-intro", start: "top bottom", end: "bottom top", scrub: 1 } });
-  gsap.to('.about-img-2', { yPercent: 15, ease: "none", scrollTrigger: { trigger: ".about-intro", start: "top bottom", end: "bottom top", scrub: 1 } });
-}
-
-// Form Handling
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let isValid = true;
-    const fields = contactForm.querySelectorAll('[required]');
-    fields.forEach(field => {
-      const wrapper = field.closest('.form-field');
-      if (!wrapper) return;
-      if (!field.value.trim()) { wrapper.classList.add('error'); isValid = false; }
-      else if (field.type === 'email') {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!re.test(field.value)) { wrapper.classList.add('error'); isValid = false; }
-        else wrapper.classList.remove('error');
-      } else wrapper.classList.remove('error');
-    });
-    if (isValid) {
-      const success = document.getElementById('formSuccess');
-      success.classList.add('show'); contactForm.reset();
-      setTimeout(() => success.classList.remove('show'), 5000);
-    }
-  });
-  contactForm.querySelectorAll('input, textarea').forEach(field => {
-    field.addEventListener('input', () => { const w = field.closest('.form-field'); if (w) w.classList.remove('error'); });
-  });
-}
-
-function setupNewsletter(formId, successId) {
-  const form = document.getElementById(formId); const success = document.getElementById(successId);
-  if (!form || !success) return;
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = form.querySelector('input[type="email"]');
-    if (email && email.value.trim()) { success.classList.add('show'); form.reset(); setTimeout(() => success.classList.remove('show'), 4000); }
-  });
-}
-setupNewsletter('newsletterForm', 'newsletterSuccess');
-setupNewsletter('newsletterFormInline', 'newsletterSuccessInline');
-
-// Toast
-const toast = document.getElementById('toast');
-const toastMsg = document.getElementById('toastMsg');
-function showToast(msg) { if (toastMsg) toastMsg.textContent = msg; if (toast) { toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2500); } }
-document.querySelectorAll('.add-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const card = btn.closest('.product-card');
-    const name = card ? card.querySelector('h4').textContent : 'this edition';
-    showToast(`We'll notify you when ${name} is available.`);
-  });
-});
-
-// Magnetic Buttons
-document.querySelectorAll('.btn').forEach(btn => {
-  btn.addEventListener('mousemove', (e) => {
-    const rect = btn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    gsap.to(btn, { x: x * 0.2, y: y * 0.3, duration: 0.4, ease: 'power2.out' });
-  });
-  btn.addEventListener('mouseleave', () => { gsap.to(btn, { x: 0, y: 0, duration: 0.4, ease: 'power2.out' }); });
-});
-
-// 3D Tilt
-const heroMain = document.querySelector('.hero-image-main');
-if (heroMain) {
-  heroMain.addEventListener('mousemove', (e) => {
-    const rect = heroMain.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    gsap.to(heroMain, { rotationY: x * 10, rotationX: -y * 10, transformPerspective: 800, duration: 0.6, ease: 'power2.out' });
-  });
-  heroMain.addEventListener('mouseleave', () => { gsap.to(heroMain, { rotationY: -3, rotationX: 0, duration: 0.8, ease: 'power3.out' }); });
-}
-document.querySelectorAll('.book-card-cover').forEach(cover => {
-  cover.addEventListener('mousemove', (e) => {
-    const rect = cover.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    gsap.to(cover, { rotationY: x * 8, rotationX: -y * 8, transformPerspective: 1000, duration: 0.5, ease: 'power2.out' });
-  });
-  cover.addEventListener('mouseleave', () => { gsap.to(cover, { rotationY: 0, rotationX: 0, duration: 0.8, ease: 'power3.out' }); });
-});
-
-// Hero Load Animation
-window.addEventListener('load', () => {
-  const heroTitleLines = document.querySelectorAll('#page-home .hero-title .ln span');
-  const heroText = document.querySelectorAll('#page-home .hero-text > *:not(.hero-title)');
-  const heroVisual = document.querySelector('#page-home .hero-visual');
-  gsap.fromTo(heroTitleLines, { y: '110%', opacity: 0 }, { y: '0%', opacity: 1, duration: 1.1, stagger: 0.1, ease: 'power4.out', delay: 0.15 });
-  gsap.fromTo(heroText, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, stagger: 0.12, ease: 'power3.out', delay: 0.5 });
-  gsap.fromTo(heroVisual, { x: 60, opacity: 0, scale: 0.95 }, { x: 0, opacity: 1, scale: 1, duration: 1.4, ease: 'power3.out', delay: 0.6 });
-  setTimeout(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); }, 200);
-});
-
-// Stat Count-Up Animation
-if (window.ScrollTrigger) {
-  document.querySelectorAll('.stat-num').forEach(el => {
-    const raw = el.textContent.trim();
-    const num = parseInt(raw, 10);
-    if (isNaN(num)) return;
-    const suffix = raw.replace(/^[0-9]+/, '');
-    const counter = { val: 0 };
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 90%',
-      once: true,
-      onEnter: () => {
-        gsap.to(counter, {
-          val: num, duration: 1.6, ease: 'power2.out',
-          onUpdate: () => { el.textContent = Math.round(counter.val) + suffix; },
-          onComplete: () => { el.textContent = raw; }
-        });
-      }
-    });
-  });
-}
-</script>
+  <script type="importmap">
+    { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+  <script type="module" src="js/main.js"></script>
 
 </body>
+
 </html>
