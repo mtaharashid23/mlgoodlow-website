@@ -481,7 +481,7 @@ button {
 
 .hero-visual {
   position: relative;
-  height: 600px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -506,7 +506,7 @@ button {
   height: 440px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-3deg);
+  transform: translate(-50%, -50%);
   border: 1px solid var(--border-strong);
   z-index: 2;
 }
@@ -531,8 +531,8 @@ button {
 
 .hero-badge {
   position: absolute;
-  top: -30px;
-  left: -20px;
+  top: -40px;
+  left: 60px;
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -715,11 +715,11 @@ button {
 
 .about-image-stack {
   position: relative;
-  height: 600px;
+  /* height: 600px; */
 }
 
 .about-image-stack img {
-  position: absolute;
+  /* position: absolute; */
   border-radius: 6px;
   object-fit: cover;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
@@ -728,7 +728,7 @@ button {
 .about-img-1 {
   width: 70%;
   height: 80%;
-  top: 0;
+  /* top: 0; */
   left: 0;
   z-index: 2;
 }
@@ -744,13 +744,14 @@ button {
 
 .about-img-decor {
   position: absolute;
-  top: 10%;
-  right: 5%;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  right: 2%;
   width: 80px;
   height: 80px;
-  border: 1px solid var(--crimson);
+  border: 1px solid var(
+  --crimson);
   z-index: 1;
-  transform: rotate(45deg);
 }
 
 .about-text h3 {
