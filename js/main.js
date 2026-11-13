@@ -151,8 +151,11 @@ function pageFromHash() {
 
 function setActivePage(pageId) {
   pages.forEach(p => p.classList.toggle('active', p.id === `page-${pageId}`));
+  // Sub-pages (e.g. a single blog post) can light up their parent nav item via data-nav
+  const pageEl = $(`#page-${pageId}`);
+  const navId = (pageEl && pageEl.dataset.nav) || pageId;
   $$('.nav-link').forEach(link => {
-    const on = link.dataset.page === pageId;
+    const on = link.dataset.page === navId;
     link.classList.toggle('active', on);
     if (on) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');

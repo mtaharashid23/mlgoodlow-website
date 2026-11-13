@@ -1415,6 +1415,145 @@ body.cursor-ready .cursor-outline {
   gap: 1rem;
 }
 
+/* Featured post card (wide, image + text side by side) */
+.blog-feature {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.blog-feature .blog-card-image {
+  aspect-ratio: 4/3;
+  margin-bottom: 0;
+}
+
+.blog-feature h4 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 300;
+  line-height: 1.12;
+  margin-bottom: 1.2rem;
+}
+
+.blog-feature .excerpt {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 1.6rem;
+}
+
+.blog-feature .blog-meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--crimson-bright);
+}
+
+/* Single blog post */
+.blog-post {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.blog-post-back {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.blog-post-back:hover {
+  color: var(--crimson-bright);
+}
+
+.blog-post-title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 1rem 0 1.25rem;
+}
+
+.blog-post-byline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+}
+
+.blog-post-hero {
+  aspect-ratio: 16/9;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 3.5rem;
+}
+
+.blog-post-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.blog-post-body p {
+  color: var(--cream-soft);
+  font-size: 1.08rem;
+  line-height: 1.85;
+  margin-bottom: 1.4rem;
+}
+
+.blog-post-body h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+  margin: 3.5rem 0 1.25rem;
+}
+
+.blog-post-signoff {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: var(--muted);
+}
+
+.blog-post-signoff .name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--cream);
+}
+
+.blog-post-footer {
+  margin-top: 3.5rem;
+}
+
+@media (max-width: 768px) {
+  .blog-feature {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+
+  .blog-post-body p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .blog-post-hero {
+    margin-bottom: 2.5rem;
+  }
+}
+
 /* Media Page */
 .media-header-quote {
   font-family: var(--serif);
